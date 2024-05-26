@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@100..900&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 20 14.3% 4.1%;
+    --card: 0 0% 100%;
+    --card-foreground: 20 14.3% 4.1%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 20 14.3% 4.1%;
+    --primary: 24 9.8% 10%;
+    --primary-foreground: 60 9.1% 97.8%;
+    --secondary: 60 4.8% 95.9%;
+    --secondary-foreground: 24 9.8% 10%;
+    --muted: 60 4.8% 95.9%;
+    --muted-foreground: 25 5.3% 44.7%;
+    --accent: 60 4.8% 95.9%;
+    --accent-foreground: 24 9.8% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 20 5.9% 90%;
+    --input: 20 5.9% 90%;
+    --ring: 20 14.3% 4.1%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 20 14.3% 4.1%;
+    --foreground: 60 9.1% 97.8%;
+    --card: 20 14.3% 4.1%;
+    --card-foreground: 60 9.1% 97.8%;
+    --popover: 20 14.3% 4.1%;
+    --popover-foreground: 60 9.1% 97.8%;
+    --primary: 60 9.1% 97.8%;
+    --primary-foreground: 24 9.8% 10%;
+    --secondary: 12 6.5% 15.1%;
+    --secondary-foreground: 60 9.1% 97.8%;
+    --muted: 12 6.5% 15.1%;
+    --muted-foreground: 24 5.4% 63.9%;
+    --accent: 12 6.5% 15.1%;
+    --accent-foreground: 60 9.1% 97.8%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 60 9.1% 97.8%;
+    --border: 12 6.5% 15.1%;
+    --input: 12 6.5% 15.1%;
+    --ring: 24 5.7% 82.9%;
+  }
+}
+
+@layer base {
+    * {
+      @apply border-border;
+    }
+    body {
+      @apply bg-background text-foreground font-Noto box-border; 
+    }
+  }
+
+@layer components {
+  .max-container {
+    @apply max-w-[1280px] w-full mx-auto px-4 sm:px-16 
+  }
+}
+
+@layer utilities {
+  .padding {
+      @apply sm:px-16 px-4 sm:py-24 py-12;
+    }
+  
+  .padding-x {
+      @apply sm:px-16 px-4;
+    }
+  
+  .padding-y {
+      @apply sm:py-24 py-12;
+    }
+  
+  .padding-l {
+      @apply sm:pl-16 pl-4;
+    }
+  
+  .padding-r {
+      @apply sm:pr-16 pr-4;
+    }
+  
+  .padding-t {
+      @apply sm:pt-24 pt-12;
+    }
+  
+  .padding-b {
+      @apply sm:pb-24 pb-12;
+    }
+}
+
+/* PO文內容的style */
+.post-content-content h1,
+.post-content h2,
+.post-content p {
+  @apply tracking-wider mb-3
+}
+
+.post-content h1 {
+  @apply relative pl-4 text-2xl text-primary font-semibold
+}
+.post-content h1::before {
+  content: "";
+  @apply absolute top-0 left-0 h-full w-2 bg-primary
+}
+.post-content h2 {
+  @apply text-xl text-primary font-semibold
+}
+
+.post-content p {
+  @apply text-lg text-foreground leading-loose
+}
+
+/* code block的style */
+.post-content pre {
+  @apply relative p-4 mb-2
+}
+
+.post-content pre::before {
+  content: attr(data-language);
+  @apply absolute top-0 right-0 capitalize text-white bg-primary px-2 py-1
+}
+
+.post-content pre .line.diff.remove {
+  @apply bg-red-100 w-full
+}
+.post-content pre .line.diff.add {
+  @apply bg-green-200
+}
+.post-content pre .line.highlighted {
+  @apply bg-gray-200
+}
