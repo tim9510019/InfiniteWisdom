@@ -27,6 +27,7 @@ const CategorySection = ({
   for (let i = 0; i < posts.length; i += postsPerPage) {
     groupedPosts.push(posts.slice(i, i + postsPerPage));
   }
+
   return (
     <section className="flex flex-col gap-4 overflow-hidden">
       <a href={`/categories/${category}`}>
@@ -34,9 +35,9 @@ const CategorySection = ({
       </a>
       <Separator />
       <div className="relative grid grid-cols-3 gap-3 group">
-        <NextPrevBtn position="left" />
-        <NextPrevBtn position="right" />
-        {classifiedPosts[category].map((post, index) => (
+        {/* <NextPrevBtn position="left" />
+        <NextPrevBtn position="right" /> */}
+        {classifiedPosts[category].slice(0,3).reverse().map((post, index) => (
           <CardSm
             key={index}
             url={`/blog/${post.slug}`}

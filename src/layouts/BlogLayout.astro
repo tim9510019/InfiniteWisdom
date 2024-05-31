@@ -19,9 +19,12 @@ const filterLabelMap = new Map([
   ["tag", "標籤"],
 ]);
 const filterLabel = filter ? filterLabelMap.get(filter) : undefined;
+const sortedPosts = posts.sort((a,b) => {
+  return b.data.date.getTime() - a.data.date.getTime()
+})
 
 const categoryCountMap = new Map();
-posts.forEach((post) => {
+sortedPosts.forEach((post) => {
   const category = post.data.category;
   if (categoryCountMap.has(category)) {
     categoryCountMap.set(category, categoryCountMap.get(category) + 1);
@@ -31,7 +34,7 @@ posts.forEach((post) => {
 });
 
 const subcategoryCountMap = new Map();
-posts.forEach((post) => {
+sortedPosts.forEach((post) => {
   const subcategory = post.data.subcategory;
   if (subcategoryCountMap.has(subcategory)) {
     subcategoryCountMap.set(
@@ -44,7 +47,7 @@ posts.forEach((post) => {
 });
 
 const tagCountMap = new Map();
-posts.forEach((post) => {
+sortedPosts.forEach((post) => {
   post.data.tags.forEach((tag) => {
     if (tagCountMap.has(tag)) {
       tagCountMap.set(tag, tagCountMap.get(tag) + 1);
@@ -70,9 +73,9 @@ posts.forEach((post) => {
       {filterLabel ? `${filterLabel}：${filterItem}` : "全部貼文"}
     </h1>
   </div>
-  <div class="grid grid-cols-3 gap-6 max-lg:grid-cols-2">
+  <div class="grid grid-cols-3 gap-6">
     <section
-      class="grid col-span-2 content-start gap-6 grid-cols-2 max-sm:grid-cols-1 mb-8"
+      class="grid col-span-3 content-start gap-6 grid-cols-3 max-sm:grid-cols-1 mb-8"
     >
       {
         posts.map((post) => (
@@ -90,14 +93,5 @@ posts.forEach((post) => {
         ))
       }
     </section>
-    <aside class="max-lg:hidden">
-      <Sidebar
-        filter={filter}
-        categoryCountMap={categoryCountMap}
-        subcategoryCountMap={subcategoryCountMap}
-        tagCountMap={tagCountMap}
-        client:load
-      />
-    </aside>
   </div>
 </BaseLayout>
