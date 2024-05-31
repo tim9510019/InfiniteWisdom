@@ -1,4 +1,3 @@
-import { useState, useEffect } from "react";
 import { useTheme } from "./utils.ts";
 import { navLinks } from "@/constants/links";
 import { Separator } from "@/components/ui/separator";
@@ -6,17 +5,21 @@ import { Button } from "@/components/ui/button";
 import { FaRss, FaBars } from "react-icons/fa6";
 import { ThemeModeSwitch } from "./ThemeModeSwitch.tsx";
 import Logo from "./Logo.tsx";
+import { useStore } from "@nanostores/react";
+import { isSidebarOpenStore } from "@/store/isSidebarOpenStore.ts";
 import { IoInfinite } from "react-icons/io5";
 
 const MainNavNar = () => {
   const [theme, setThemeState] = useTheme();
+  const isSidebarOpen = useStore(isSidebarOpenStore);
+
   const handleThemeChange = (e: boolean): void => {
     e ? setThemeState("dark") : setThemeState("light");
   };
   return (
     <nav
       id="main-navbar"
-      className={`fixed w-full py-3 border-b-[1px] backdrop-filter backdrop-blur-sm bg-opacity-80 z-50 h-[65px] ${
+      className={`fixed w-full py-3 border-b-[1px] backdrop-filter backdrop-blur-sm bg-opacity-80 z-10 h-[65px] ${
         theme === "light" ? "bg-white" : "bg-black"
       }`}
     >
@@ -53,7 +56,14 @@ const MainNavNar = () => {
               theme={theme}
               handleThemeChange={handleThemeChange}
             />
-            <Button variant={"ghost"} className="lg:hidden">
+            <Button
+              id="sidebar-button"
+              variant={"ghost"}
+              className="lg:hidden"
+              onClick={() => {
+                isSidebarOpenStore.set(!isSidebarOpen);
+              }}
+            >
               <FaBars size={20} />
             </Button>
           </div>

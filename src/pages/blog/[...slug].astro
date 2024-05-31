@@ -1,9 +1,12 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { LuCalendarDays } from "react-icons/lu";
+import { FaRegClock } from "react-icons/fa6";
 import { Separator } from "@/components/ui/separator";
-import { BreadcrumbCustom } from "@/components/PostPage/BreadCrumb";
+import { FaArrowLeft } from "react-icons/fa6";
+import Prose from "@/components/PostPage/Prose.astro";
 import { getCollection, type CollectionEntry } from "astro:content";
+import Tags from "@/components/PostPage/Tags.tsx";
 export const getStaticPaths = async () => {
   const posts = await getCollection("posts");
   const paths = posts.map((post) => {
@@ -28,40 +31,66 @@ const {
   },
 } = Astro.props;
 
-const { Content } = await post.render();
+const { Content, remarkPluginFrontmatter } = await post.render();
 ---
 
 <BaseLayout pageTitle={title}>
-  <div class="pt-8">
-    <BreadcrumbCustom postTitle={title} />
-  </div>
-  <section class="py-6 flex flex-col items-center gap-4">
-    <div>
-      <h1 class="text-3xl text-center font-bold leading-normal">{title}</h1>
-    </div>
-    <div class="flex items-center space-x-3 text-muted-foreground">
-      <div>by {author}</div>
-      <Separator orientation="vertical" className="h-7" />
-      <div class="flex items-center space-x-1">
-        <LuCalendarDays size={20} /><span>{date}</span>
+  <div class="max-w-[768px] mx-auto pb-8">
+    <section class="relative py-6 flex flex-col items-start gap-3">
+      <button
+        id="back-btn"
+        class="px-3 py-3 rounded-full border-[1px] border-muted-foreground text-muted-foreground hover:border-primary hover:text-primary"
+        ><FaArrowLeft /></button
+      >
+      <div class="flex gap-1 items-center text-muted-foreground">
+        <a
+          href=`/categories/${category}`
+          class="py-1 hover:underline hover:text-primary">{category}</a
+        >
+        ·
+        <a
+          href=`/subcategories/${subcategory}`
+          class="py-1 hover:underline hover:text-primary">{subcategory}</a
+        >
       </div>
-    </div>
-    <div
-      class="text-foreground flex items-center flex-wrap justify-center gap-2"
-    >
-      {
-        tags.map((tag) => (
-          <a
-            href={`/tags/${tag}`}
-            class="bg-muted rounded-2xl px-2 py-1 hover:bg-primary hover:text-white"
+      <div>
+        <h1 class="text-3xl font-bold leading-normal">
+          {title}
+        </h1>
+      </div>
+      <div
+        class="flex items-center space-x-2 text-muted-foreground text-sm flex-wrap"
+      >
+        <div>{author}</div>
+        <Separator orientation="vertical" className="h-7" />
+        <div class="flex items-center space-x-1">
+          <LuCalendarDays size={15} /><span
+            >{
+              date.toLocaleDateString("zh-TW", {
+                year: "numeric",
+                month: "2-digit",
+                day: "2-digit",
+              })
+            }</span
           >
-            {tag}
-          </a>
-        ))
-      }
-    </div>
-  </section>
-  <div class="post-content">
-    <Content />
+        </div>
+        <Separator orientation="vertical" className="h-7" />
+        <div class="flex items-center space-x-1">
+          <FaRegClock size={15} />
+          <span>{Math.ceil(remarkPluginFrontmatter.minutes)} mins</span>
+        </div>
+      </div>
+      <Tags tags={tags} client:visible />
+      <Prose><Content /></Prose>
+    </section>
   </div>
 </BaseLayout>
+
+<script>
+  function goBack() {
+    window.history.back();
+  }
+  document.addEventListener("astro:page-load", () => {
+    document.getElementById("back-btn")?.addEventListener("click", goBack);
+  });
+</script>

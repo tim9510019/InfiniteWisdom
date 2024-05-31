@@ -1,30 +1,12 @@
 ---
 import { getCollection } from "astro:content";
-import BaseLayout from "@/layouts/BaseLayout.astro";
-import PostCard from "@/components/Blog/PostCard.astro";
+import BlogLayout from "@/layouts/BlogLayout.astro";
 const posts = await getCollection("posts", ({ data }) => {
   return data.isDraft !== true;
 });
+const sortedPosts = posts.sort((a, b) => {
+  return b.data.date.getTime() - a.data.date.getTime();
+});
 ---
 
-<BaseLayout pageTitle="Blog">
-  <section
-    class="grid gap-4 grid-cols-3 max-lg:grid-cols-2 max-sm:grid-cols-1 mb-8"
-  >
-    {
-      posts.map((post) => (
-        <PostCard
-          title={post.data.title}
-          category={post.data.category}
-          subcategory={post.data.subcategory}
-          tags={post.data.tags}
-          date={post.data.date}
-          author={post.data.author}
-          image={post.data.heroImage}
-          slug={post.slug}
-          body={post.body}
-        />
-      ))
-    }
-  </section>
-</BaseLayout>
+<BlogLayout posts={sortedPosts} />

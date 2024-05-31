@@ -1,17 +1,66 @@
 ---
-import { Button } from "@/components/ui/button";
-import { AiFillAlert } from "react-icons/ai";
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { CardWithForm } from "@/components/Card";
-import { Icon } from "astro-icon/components";
+import { getCollection } from "astro:content";
+import { Separator } from "@/components/ui/separator";
+
+import { type Post, type ClassifiedPosts } from "@/types/home";
+import CategorySection from "@/components/Home/CategorySection";
+
+const allPosts = await getCollection("posts", ({ data }) => {
+  return data.isDraft === false;
+});
+const sortedPosts = allPosts.sort(
+  (a, b) => a.data.date.getTime() - b.data.date.getTime()
+);
+
+function classifyPostsByCategory(posts: Post[]) {
+  const classifiedPosts: ClassifiedPosts = {};
+  posts.forEach((post) => {
+    const category = post.data.category;
+    if (!classifiedPosts[category]) {
+      classifiedPosts[category] = [];
+    }
+    classifiedPosts[category].push(post);
+  });
+  return classifiedPosts;
+}
+const classifiedPosts = classifyPostsByCategory(sortedPosts);
+
+const processPostsMinutes = async () => {
+  const postIdToMinutesMap: { [postId: string]: number } = {};
+  for (const category of Object.keys(classifiedPosts)) {
+    for (const post of classifiedPosts[category]) {
+      const renderResponse = await post.render();
+      const minutes = renderResponse.remarkPluginFrontmatter.minutes;
+      postIdToMinutesMap[post.id] = minutes;
+    }
+  }
+  return postIdToMinutesMap;
+};
+const postIdToMinutesMap = await processPostsMinutes();
 ---
 
-<BaseLayout pageTitle="Home">
-  <CardWithForm client:load />
-  <CardWithForm client:load />
-  <CardWithForm client:load />
-  <CardWithForm client:load />
-  <CardWithForm client:load />
-  <CardWithForm client:load />
-  <CardWithForm client:load />
+<BaseLayout pageTitle="首頁">
+  <section class="grid place-content-center gap-3 py-8">
+    <h1 class="text-xl font-bold w-fit mx-auto">John's Script</h1>
+    <p class="text-muted-foreground text-center">
+      這是一個分享程式設計筆記、讀書心得及吃喝玩樂等雜七雜八內容的Blog
+    </p>
+  </section>
+  <div class="py-6 flex gap-4">
+    <div class="flex flex-col gap-3 max-lg:w-full">
+      {
+        Object.keys(classifiedPosts).map((category) => {
+          return (
+            <CategorySection
+              category={category}
+              classifiedPosts={classifiedPosts}
+              postIdToMinutesMap={postIdToMinutesMap}
+              client:load
+            />
+          );
+        })
+      }
+    </div>
+  </div>
 </BaseLayout>
