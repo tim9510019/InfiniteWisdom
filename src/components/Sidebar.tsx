@@ -24,9 +24,6 @@ const Sidebar = () => {
       >
         <div className="grid place-content-center">
           <div className="flex flex-col items-center border-none shadow-none w-fit mx-auto">
-            <div className="py-6">
-              <Logo size={80} />
-            </div>
             <div>
               <div className="flex flex-col items-center gap-3 text-lg">
                 {navLinks.map((link) => (
