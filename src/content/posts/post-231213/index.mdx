@@ -22,7 +22,7 @@ Transformer架構十分有效但是效率不高，尤其是當輸入Context 長�
 # 技術亮點:
 和Transformer採用完全不同的套路，擺脫有效但沒運算效率的問題，整體來說有下列的技術特點:
 
-1. 計算複雜度為***O*****(輸入序列長度M)**，小於Transformer的O(輸入序列長度M2)
+1. 計算複雜度為***O*** **(輸入序列長度M)**，小於Transformer的O(輸入序列長度M2)
 2. 受 **Kalman Filter** / 其他SSMs 啟發，設計架構，充滿想像空間
 3. 能學習與輸入相關的**Δ參數**，用來**跳過不相干的輸入**
 4. 加速運算，**無Attention Layer** 與 **MLP** (3 or more layers) Blocks
@@ -42,33 +42,32 @@ Transformer架構十分有效但是效率不高，尤其是當輸入Context 長�
 <p align="center">![](./fig2.jpg)</p>
 <p align="center">A，B參數可以調節輸入x與狀態h，個別的重要程度，做差異性的狀態更新</p>
 
-
 S4架構讓Mamba可以持續重複迭代下去，其中Δ參數的部分，可以讓模型學習跳過與目標不相干的內容，增加除了LTI (線性非時變系統) 以外的泛用度。
 
 <p align="center">![](./fig3.jpg)</p>
 
 # 為什麼0階保持寫成這樣的公式? 
-dh(t)/dt = Ah(t) + Bx(t) 的解，可以寫成以下形式 (解微分方程，代入ZOH假設而得)
+dh(t)/dt = Ah(t) + Bx(t) 的解，可以寫成以下形式 (解微分方程，代入[ZOH](https://zh.wikipedia.org/zh-tw/%E9%9B%B6%E9%9A%8E%E4%BF%9D%E6%8C%81)假設而得)
 
 連續表達式為:
 
-h(T) = exp(A * T)h(0) + ∫0Texp(A * (T - τ)) dτ * B * x(0)
+h(T) = exp(A * T)h(0) + ∫<sub>0</sub><sup>T</sup>exp(A * (T - τ)) dτ * B * x(0)
 
 離散表達式為:
 
-h[T] = Ad * h[0] + Bd * x[0]
+h[T] = A<sub>d</sub> * h[0] + B<sub>d</sub> * x[0]
 
-比對兩者表達式，可以知道Ad = exp(A * T), Bd = ∫0Texp(A * (T - τ)) dτ * B
+比對兩者表達式，可以知道**Ad = exp(A * T)**, Bd = ∫<sub>0</sub><sup>T</sup>exp(A * (T - τ)) dτ * B
 
 對exp(A * (T - τ))做泰勒展開一階近似可得:
 
-exp(A * (T - τ)) ≈Ⅰ + A * (T - τ) 代入 Bd 可得:
+exp(A * (T - τ)) ≈Ⅰ + A * (T - τ) 代入 B<sub>d</sub> 可得:
 
-Bd = (T + A * T2 / 2) * B ​≈ T * B (假設T2夠小可忽略)
+B<sub>d</sub> = (T + A * T<sup>2</sup> / 2) * B ​≈ T * B (假設T<sup>2</sup>夠小可忽略)
 
-近似Ad = Ⅰ + A * T，可得 A * T = Ad -Ⅰ代入Bd
+近似A<sub>d</sub> = Ⅰ + A * T，可得 A * T = A<sub>d</sub> -Ⅰ代入B<sub>d</sub>
 
-**Bd = A-1 * (Ad -Ⅰ) * B**
+**B<sub>d</sub> = A<sup>-1</sup> * (A<sub>d</sub> -Ⅰ) * B**
 
 <p align="center">![](./fig4.jpg)</p>
 
