@@ -13,7 +13,7 @@ import {
   transformerMetaWordHighlight,
 } from "@shikijs/transformers";
 import { remarkReadingTime } from "./remark-plugins/remark-reading-time.mjs";
-import db from "@astrojs/db";
+// import db from "@astrojs/db";
 
 import vercel from "@astrojs/vercel/serverless";
 
@@ -30,7 +30,7 @@ export default defineConfig({
       applyBaseStyles: false,
     }),
     icon(),
-    db(),
+    // db(),
   ],
   markdown: {
     remarkPlugins: [remarkReadingTime],
