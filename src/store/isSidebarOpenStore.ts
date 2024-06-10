@@ -1,5 +1,4 @@
-import { atom, type WritableAtom } from "nanostores";
-// main navsidebar
-type IsSidebarOpen = boolean;
+import { atom } from "nanostores";
 
-export const isSidebarOpenStore: WritableAtom<IsSidebarOpen> = atom(false);
+type IsSidebarOpen = boolean;
+export const isSidebarOpenStore = atom<IsSidebarOpen>(false);
