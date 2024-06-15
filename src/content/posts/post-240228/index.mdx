@@ -44,7 +44,7 @@ MASK-LM首先會產生一組固定的MASK框架，根據想要生成的任務(�
 <p align="center">![](./fig6.jpg)</p>
 <p align="center">COMMIT 與傳統生成圖片 MTM生成方式比較</p>
 
-如下圖所示，這種生成Token的方式相對於完全的Auto-regression (AR-LM)方式，比較適合用在生成影片/圖片上面，圖片比文字多了一個維度，無論照哪一種Scan的方式逐步生成，都會導致大量的Auto-Regression損失，反之，藉由學習Mask解開與生成的方式，可以讓相對比較可信的Token先浮出檯面，然後讓其他區塊參考。重點是這整個生成過程，有經過$ L_mask $和$ L_refine $ & $ L_recons $ 損失函數，共同發揮，進行調整過，整體影片生成的準確度註定會比AR-LM方式還要來得高。
+如下圖所示，這種生成Token的方式相對於完全的Auto-regression (AR-LM)方式，比較適合用在生成影片/圖片上面，圖片比文字多了一個維度，無論照哪一種Scan的方式逐步生成，都會導致大量的Auto-Regression損失，反之，藉由學習Mask解開與生成的方式，可以讓相對比較可信的Token先浮出檯面，然後讓其他區塊參考。重點是這整個生成過程，有經過$$ L_{mask} $$ , $$ L_{refine} $$ 和 $$ L_{recons} $$ 損失函數，共同發揮，進行調整過，整體影片生成的準確度註定會比AR-LM方式還要來得高。
 
 <p align="center">![](./fig7.jpg)</p>
 <p align="center">ImageNet 的 Pretrain，後續主要訓練針對三個Loss同時進行收斂，確保能夠學會如何解Mask推測逐步生成</p>
@@ -59,7 +59,7 @@ MASK-LM首先會產生一組固定的MASK框架，根據想要生成的任務(�
 作者用UCF101資料集訓練，實驗各種架構，發現Causal-3D CNN架構表現突出，Transformer對於不同3D Video Tokens之間的關係理解能力，沒有想像中得好。
 
 * Change Downsamplers from average pooling into strided convolutions to leverage learned kernels
-Down Sampling通常會先使用average or max pooling，來試驗效果(因為計算量 小)，然後嘗試用strided convolutions，看看效果能否有提升。
+Down Sampling通常會先使用average or max pooling，來試驗效果 (因為計算量小)，然後嘗試用strided convolutions，看看效果能否有提升。
 
 * 3D blur pooling (Shift invariance)
 傳統會使用Augmentation方法來增加Shift invariance，本篇使用最新的3D blur pooling技術來強化CNN模型對於同樣影像，不同x/y軸位移之間的理解能力，有時間要好好理解一下，這些技術都是能否做到SoTA的細節。

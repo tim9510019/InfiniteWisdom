@@ -3,6 +3,8 @@ import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
+import remarkMath from "remark-math"
+import rehypeKatex from "rehype-katex"
 import {
   transformerNotationDiff,
   transformerNotationHighlight,
@@ -33,7 +35,14 @@ export default defineConfig({
     // db(),
   ],
   markdown: {
-    remarkPlugins: [remarkReadingTime],
+    remarkPlugins: [remarkReadingTime, remarkMath],
+    rehypePlugins: [
+      [rehypeKatex, {
+          trust: true
+
+      // Katex plugin options
+      }]
+    ],
     shikiConfig: {
       // Choose from Shiki's built-in themes (or add your own)
       // https://shiki.style/themes
