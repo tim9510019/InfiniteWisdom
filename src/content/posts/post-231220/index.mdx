@@ -45,7 +45,7 @@ Teacher是傳統的擴散生成模型，在蒸餾的時候Fix Weight & bias，�
 如此安排就有三張圖片，其中初始圖片與學生產生的圖片可以計算Hinge Loss 給 GAN的 Discriminator，老師生成的圖片與學生生成的圖片，則使用進行2-norm distance與Noise Level c(t)的乘積形成Loss來收斂。
 
 <p align="center">![](./fig4.jpg)</p>
-<p align="center">論文成功用一張圖說明所有的訓練架構思路，完成極其有效率的架構描述</p>
+<figcaption>論文成功用一張圖說明所有的訓練架構思路，完成極其有效率的架構描述</figcaption>
 
 收斂Discriminator loss讓學生模型能騙過鑑別模型，讓Hinge Loss 無法拉開，論文額外加入Gradient Penalty避免梯度過大，不好收斂的問題，這也是對抗生成網路訓練常常沒有結果或是訓練結果不穩定的元兇。論文表示，這種作法對於解析度大於128 Pixel2 的生成模型蒸餾，特別的有效，非常符合先前對於GAN的認知。
 

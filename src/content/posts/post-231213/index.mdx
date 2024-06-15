@@ -37,10 +37,10 @@ Transformer架構十分有效但是效率不高，尤其是當輸入Context 長�
 主架構使用S4 (**S**tructured **S**tate **S**pace **S**equence Model)，輸出yt和狀態有關，而狀態和輸入Xt與前一個狀態ht-1有關，和Kalman Filter的運作模式有異曲同工之妙，Kalman Filter 在工程上被廣泛用在陀螺儀/雷達/GPS/類比/數位訊號取樣上面，登月以及洲際導彈都沒有缺席，使用這種結構，讓人對於Mamba的成效充滿想像空間。
 
 <p align="center">![](./fig1.jpg)</p>
-<p align="center">著名的Kalman Filter，在狀態預測和實際測量中，利用K (Kalman Gain)找尋平衡點，決定要信賴狀態預測或是實際測量多一點</p>
+<figcaption>著名的Kalman Filter，在狀態預測和實際測量中，利用K (Kalman Gain)找尋平衡點，決定要信賴狀態預測或是實際測量多一點</figcaption>
 
 <p align="center">![](./fig2.jpg)</p>
-<p align="center">A，B參數可以調節輸入x與狀態h，個別的重要程度，做差異性的狀態更新</p>
+<figcaption>A，B參數可以調節輸入x與狀態h，個別的重要程度，做差異性的狀態更新</figcaption>
 
 S4架構讓Mamba可以持續重複迭代下去，其中Δ參數的部分，可以讓模型學習跳過與目標不相干的內容，增加除了LTI (線性非時變系統) 以外的泛用度。
 
@@ -75,7 +75,7 @@ S6架構 (S4 +Selection / Scan ) 適用於時變性系統，加入與輸入x相�
 
 <p align="center">![](./fig5.jpg)</p>
 <p align="center">![](./fig6.jpg)</p>
-<p align="center">輸入長度增加對於Scan來說時間成本是一次方，對於Flash-Attention來說是二次方，使用作者自定義的Scan訓練方法，可以達到SOTA的訓練時間</p>
+<figcaption>輸入長度增加對於Scan來說時間成本是一次方，對於Flash-Attention來說是二次方，使用作者自定義的Scan訓練方法，可以達到SOTA的訓練時間</figcaption>
 
 為了降低訓練時超長序列RNN (Recurrent Neuron Network) 上面的梯度消失的影響，使用Resnet的連接方式，SSM的Δ參數與輸入x條件參數，與 [SiLU (Swish)](https://paperswithcode.com/method/silu) 激活函數。
 

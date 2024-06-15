@@ -35,17 +35,17 @@ isDraft: false
 Np會增加容量，但相對於Np = 1在相同容量下，可以達到更好的畫質
 
 <p align="center">![](./fig4.jpg)</p>
-<p align="center">壓縮大型圖片或是大型3D場景可以達到很好的效果，但是對於原本檔案就比較小的圖片，比較沒有競爭優勢，不過作者仍然有提供一些有競爭力的設定</p>
+<figcaption>壓縮大型圖片或是大型3D場景可以達到很好的效果，但是對於原本檔案就比較小的圖片，比較沒有競爭優勢，不過作者仍然有提供一些有競爭力的設定</figcaption>
 
 <p align="center">![](./fig5.jpg)</p>
 <p align="center">![](./fig6.jpg)</p>
-<p align="center">壓縮小型圖片檔案比較沒有效益，因為這個方法的低銷比較高，但是對於8K圖像的壓縮，則是大有斬獲</p>
+<figcaption>壓縮小型圖片檔案比較沒有效益，因為這個方法的低銷比較高，但是對於8K圖像的壓縮，則是大有斬獲</figcaption>
 
 可以降低壓縮的多解析度參考數目，與Neuron的數目，來提高在小型檔案的壓縮比例，試圖降低容量低銷，讓此方法可以被用在各種情境。關於多解析度參考，可以參考底下的附圖，節錄自本篇作者在2022年發表的instant NGP論文。
 
 <p align="center">![](./fig7.jpg)</p>
 <p align="center">![](./fig8.jpg)</p>
-<p align="center">要降低小型圖片的壓縮低銷容量，可以使用比較少的Multiple Resolution Estimation，或是降低Neuron的數目，或是可以同時雙管齊下</p>
+<figcaption>要降低小型圖片的壓縮低銷容量，可以使用比較少的Multiple Resolution Estimation，或是降低Neuron的數目，或是可以同時雙管齊下</figcaption>
 
 L越大，所需要的容量也就越大，所以作者建議在原始檔案沒有很大的情況下，盡可能的要降低L與Neuron隱藏層大小來減少容量低銷，
 

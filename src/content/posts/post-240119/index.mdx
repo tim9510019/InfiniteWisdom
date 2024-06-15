@@ -25,15 +25,15 @@ isDraft: false
 緊接著，拿手絕活登場了，下圖標紅字的部分，用了Tone Color Extractor自己的Base Speaker Encoder輸入到[Flow (Normalization Flow Layer)](https://deepgenerativemodels.github.io/notes/flow/)裡面，並使用minimize [KL-divergence](https://encord.com/blog/kl-divergence-in-machine-learning/) & [Time-domain warping](https://builtin.com/data-science/dynamic-time-warping)的方式來盡可能的去除音色(Tone Color)，讓其純粹的表達國際音標(IPA)所對應到的聲音，好讓Tone Color Extractor自己的Reference Speaker Encoder可以盡可能地往裡面加入音色，不會混雜了Base speaker TTS model 原有的音色。
 
 <p align="center">![](./fig1.jpg)</p>
-<p align="center">IPA (國際音標) 是跨語言轉換學習的關鍵</p>
+<figcaption>IPA (國際音標) 是跨語言轉換學習的關鍵</figcaption>
 
 <p align="center">![](./fig2.jpg)</p>
-<p align="center">Text input 切成若干IPA Text Embeddings，和Voice encoder output 做time warping alignment，然後利用minimize KL-Divergence的方式來確保中間的Latents IPA-Aligned features，有最大化的去除任何Tone color的成分。</p>
+<figcaption>Text input 切成若干IPA Text Embeddings，和Voice encoder output 做time warping alignment，然後利用minimize KL-Divergence的方式來確保中間的Latents IPA-Aligned features，有最大化的去除任何Tone color的成分</figcaption>
 
 Tone Color Extractor則訓練自己的Encoder接上下方生成的Decoder，並使用[mel-spectrogram loss](https://arxiv.org/abs/2106.06103) and [HiFi-GAN loss](https://arxiv.org/abs/2010.05646)來對目標生成進行收斂，整體訓練把整個架構分成兩半，分別對各自的目標函數訓練，最後再把所有訓練好的模型組合起來。
 
 <p align="center">![](./fig3.jpg)</p>
-<p align="center">這張圖花了一些時間製作，把論文裡面補充的內容都放了進去</p>
+<figcaption>這張圖花了一些時間製作，把論文裡面補充的內容都放了進去</figcaption>
 
 # 心得感想:
 這篇論文裡面充滿了工程實務細節，和一般的學術論文有很大的不同，畢竟這曾是他們吃飯的工具，想必目前有更厲害的模型用於MyShell.ai的後台。從這篇論文我們可以看到，以下幾個要點:

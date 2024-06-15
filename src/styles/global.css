@@ -105,6 +105,15 @@ span[aria-hidden="true"]{
   @apply hidden
 }
 
+figcaption {
+  @apply mb-4 mt-0
+}
+
+.prose img {
+  @apply mb-2
+}
+
+
 /* PO文內容的style */
 /* .post-content-content h1,
 .post-content h2,

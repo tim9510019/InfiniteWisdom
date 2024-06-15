@@ -20,8 +20,7 @@ isDraft: false
 可以"同時"使用"多種方式"來產生對於生成影音的指引，傳統的文生影片僅能使用文字，不過在[IP-Adapter](https://arxiv.org/abs/2308.06721)論文裡面指出，一張圖的提示效果勝過千言萬語，於是有了把圖/深度圖/人體骨架圖等等，放到生成模型裡面。本篇Google Research則是一種擴展，在前人的基礎上，可以使用影片/分鏡稿/文生影片Pair/圖生影片Pair/風格圖/填充背景圖/聲音檔，來當作提示，如此一來，可以盡可能地使用各種方式來微調輸出的影片風格，達成理想中的結果，如此神奇的效果，是如何做到的? 接下來要講論文的關鍵技術，讓我們繼續看下去。
 
 <p align="center">![](./fig1.jpg)</p>
-<p align="center">多模態同時輸入，可以產生各種符合風格/文字/圖片/影片/聲音提示的短影音</p>
-
+<figcaption>多模態同時輸入，可以產生各種符合風格/文字/圖片/影片/聲音提示的短影音</figcaption>
 
 # 論文關鍵技術:
 如先前介紹過的Fuyu8b，LLM輸入端可以放入圖片的Embedding (經過Encoder編碼後的結果)，加上原本的Text Embedding 就能夠針對圖片問問題，同理，如果輸入是影片/聲音，訓練起來也能夠對影片或是聲音提出問題，然後取得相對應的回答。
@@ -33,10 +32,10 @@ isDraft: false
 作者在這裡採用先把Encoder/Decoder作預訓練的方法，藉此來產生Enbedding Dataset，讓LLM去學習與收斂。
 
 <p align="center">![](./fig2.jpg)</p>
-<p align="center">Encoder / Decoder可以使用SOTA的模型，用來編碼語解碼Embeddings，加入Special Token排列組合成Sequence讓LLM去學</p>
+<figcaption>Encoder / Decoder可以使用SOTA的模型，用來編碼語解碼Embeddings，加入Special Token排列組合成Sequence讓LLM去學</figcaption>
 
 <p align="center">![](./fig3.jpg)</p>
-<p align="center">Token設計與對應表</p>
+<figcaption>Token設計與對應表</figcaption>
 
 現在來講到模型關鍵架構部分，為了同時提高LLM的學習效率，與更多的場景應用可能性，在圖片的Embedding部分，使用兩種不同維度大小的Embeddings，在高維度的部分，使用Mask做遮罩下去學，讓模型學習用低維描述去補足高維資訊裡面的缺乏部分，這也是NVIDIA DLSS會運用到的手法，配合Token Factorize的方法可以讓解析度提高2x2倍，也就是四倍，相對於直接去學高維度的生成，這樣做經濟實惠許多。
 
@@ -47,7 +46,7 @@ Token Factorization的部分其實是將Token 數量 Double 或是砍半的技�
 為了增強影像的生成品質，在Image Encoder Latent的部分有加入Augmentation Noise加強模型一般化的理解，並使用CFG (Condiction-Free Guidance) 讓模型專心提升畫質，同時使用使得Encoder模型能夠產生一般化與高品質的結果。
 
 <p align="center">![](./fig4.jpg)</p>
-<p align="center">同時考慮三個維度的Attention架構，可以記在心裡，同時這種低解析度與高解析度做Cross Attention的方法也可以當成是自己可以使用的招式。</p>
+<figcaption>同時考慮三個維度的Attention架構，可以記在心裡，同時這種低解析度與高解析度做Cross Attention的方法也可以當成是自己可以使用的招式</figcaption>
 
 # 論文評估成果:
 Google Research 8B 模型可以做到所有工作類型的需求，並且在每一項評估分數裡面，都能做到最頂尖，多工且高效能。
