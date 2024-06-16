@@ -11,65 +11,107 @@ tags: ["QuantumComputing", "Qiskit", "braket", "Hadamard", "PlusState", "MinusSt
 author: "Tim Chen"
 isDraft: false
 ---
-<p align="center"><iframe width="100%" height="315" src="https://www.youtube.com/watch?v=3-c4xJa7Flk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+<p align="center"><iframe width="560" height="315" src="https://www.youtube.com/embed/3-c4xJa7Flk?si=MaKwRUuK01_ebU-u" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></p>
 
 # 導言:
 量子計算是最終的計算形式，熟悉量子計算的各種概念與演算法，在未來，可用來模擬宇宙的運行，生命的繁衍，全社會的複雜系統運作，也能做出更為自然與高效率的人工智慧。在量子計算準備大行其道的八年前 (西元2024年)，我將帶著大家，按部就班地掌握量子計算，正如同10年前提早準備人工智慧一樣，善用原子習慣 + 超前學習，通往成功就是輕鬆且愉快的事情。
 
 # 傳統位元信息:
-傳統位元訊息只能表達單一狀態，如位元集合 Σ = {0, 1} ，0是低電壓，1是高電壓，兩種狀態不可能同時存在。
-傳統位元訊息表達50%是0，50%是1，需額外動用兩個浮點數，可以寫成向量的形式如 (0.5, 0.5)，第一個位置代表0發生的機率，第二個位置代表1發生的機率
-傳統位元訊息利用矩陣計算(線性代數)來對上述的向量進行運算，矩陣M1,M2，M1M2v = (M1M2)v，矩陣特性無限制
-傳統位元訊息的單一運算閘無法產生矩陣運算的效果
+- 傳統位元訊息只能表達單一狀態，如位元集合 Σ = {0, 1} ，0是低電壓，1是高電壓，兩種狀態不可能同時存在。
+- 傳統位元訊息表達50%是0，50%是1，需額外動用兩個浮點數，可以寫成向量的形式如 (0.5, 0.5)，第一個位置代表0發生的機率，第二個位置代表1發生的機率
+- 傳統位元訊息利用矩陣計算(線性代數)來對上述的向量進行運算，矩陣M1,M2，M1M2v = (M1M2)v，矩陣特性無限制
+- 傳統位元訊息的單一運算閘無法產生矩陣運算的效果
 
 # 量子位元信息:
-量子位元訊息，在進行測量之前，可以是0和1的疊加態，寫成 a|0> + b|1>
-承上，(a, b) ∈C2 (皆為複數) ， 且滿足 aa† + bb† = 1 (†為共軛複數)，量測後看到0的機率是 aa†，看到1的機率是 bb†
-量子位元在量測之前，天生自帶混合狀態，經過一連串計算以後，最後才進行測量
-有特殊名字的量子疊加態定義:
-$$
-Plus State:  |+> = 1/√2 |0> + 1/√2 |1>
-Minus State: |-> = 1/√2 |0> - 1/√2 |1>
-$$
-對量子位元進行運算的矩陣(運算閘)，必為U么正矩陣(unitary)，滿足以下特性:
-UU† = U†U = I, U反矩陣 = U† (†為共軛矩陣)
-作用後的量子位元能保持​ $$ aa† + bb† = 1，||Uv|| = ||v|| = 1 $$
-常見的量子矩陣(運算閘)與特性
-$$
-I = |1 0| , σ_x = |0 1|, σ_y = |0 -i|, σ_z = |1  0|
-    |​0 1|         |1 0|        |i  0|        |0 -1|
-$$
-I 保留原本量子位元的疊加態，σ_x稱為bit flip (NOT)，σ_z 稱為phase flip
-$$
-P_θ = |1    0|
-      |0 e^iθ|
-$$
-相位旋轉操作，轉90度稱為S，轉45度稱為T​
-$$
-H = |1/√2  1/√2|
-    |1/√2 -1/√2|
-$$
-$$
-Hadamard運算，H|0> = |+>​，H|1> = |->​
-             H|+> = |1>​，H|-> = |0>​​
-$$
-$$  
-(HSH)^2 = σ_x
-$$
-一個量子位元有兩個虛數的訊息量
-一次量子Single System (單位元閘) 計算，相當於計算了2x2複數矩陣與2x1複數向量的矩陣乘法
-量子位元疊加態可以用Bloch球面來表達
+- 量子位元訊息，在進行測量之前，可以是0和1的疊加態，寫成:
+<p align="center"> $$ \ket{\psi} = \ket{0} + \ket{1} $$</p>
+<p align="center"> $$ (\alpha, \beta) \in C^{2} $$(皆為複數)</p>
+<p align="center"> $$ \alpha\alpha^{\dagger} + \beta\beta^{\dagger} = 1 $$</p>
+<p align="center"> 量測量子位元後看到 0的機率是 $$ \alpha\alpha^{\dagger} $$，看到 1的機率是 $$ \beta\beta^{\dagger} $$</p>
+
+- 量子位元在量測之前，天生自帶混合狀態，經過一連串計算以後，最後才進行測量
+- 有特殊名字的量子疊加態定義:
+
+<p align="center">$$ \ket{+} = \frac{1}{\sqrt{2}} \ket{0} + \frac{1}{\sqrt{2}} \ket{1} $$</p>
+<p align="center">$$ \ket{-} = \frac{1}{\sqrt{2}} \ket{0} - \frac{1}{\sqrt{2}} \ket{1} $$</p>
+
+- 對量子位元進行運算的矩陣(運算閘)，必為U[么正矩陣](https://en.wikipedia.org/wiki/Unitary_matrix)(unitary)，滿足以下特性:
+<p align="center">$$ UU^{\dagger} = U^{\dagger}U = I $$</p>
+<p align="center">$$ U^{-1} = U^{\dagger} $$ (†為共軛)</p>
+<p align="center">作用後的量子位元能保持​ $$ \alpha\alpha^{\dagger} + \beta\beta^{\dagger} = 1 $$, $$ ||Uv|| = ||v|| = 1 $$</p>
+
+- 常見的量子矩陣(運算閘)與特性:
+    - 單位閘:
+    $$ I = 
+    \begin{pmatrix}
+    1 & 0 \\
+    0 & 1
+    \end{pmatrix}
+    $$
+
+    - Pauli-x 閘 (bit flip, NOT): 
+    $$ \sigma_x = 
+    \begin{pmatrix}
+    0 & 1 \\
+    1 & 0
+    \end{pmatrix}
+    $$
+
+    - Pauli-y 閘:
+    $$ \sigma_y = 
+    \begin{pmatrix}
+    0 & -i \\
+    i & 0
+    \end{pmatrix}
+    $$
+
+    - Pauli-z 閘 (phase flip):
+    $$ \sigma_z = 
+    \begin{pmatrix}
+    1 & 0 \\
+    0 & -1
+    \end{pmatrix}
+    $$
+
+    - 量子閘 $$ P_\theta $$：
+    量子相位旋轉操作，轉90度稱為S，轉45度稱為T​
+    $$ P_\theta = 
+    \begin{pmatrix}
+    1 & 0 \\
+    0 & e^{i\theta}
+    \end{pmatrix}
+    $$
+
+    - Hadamard 閘 $$ H $$:
+    $$
+    H = 
+    \frac{1}{\sqrt{2}}
+    \begin{pmatrix}
+    1 & 1 \\
+    1 & -1
+    \end{pmatrix}
+    $$
+
+    - Pauli-x 閘 可由H, S組成:
+    $$  
+    (HSH)^{2} = \sigma_x
+    $$
+
+- 一個量子位元有兩個虛數的訊息量
+- 一次量子Single System (單位元閘) 計算，相當於計算了2x2複數矩陣與2x1複數向量的矩陣乘法
+- 量子位元疊加態可以用[Bloch](https://en.wikipedia.org/wiki/Bloch_sphere)球面來表達
 
 # 基本定義:
-1. <a || b>表示a1N bN1 向量矩陣乘法，結果是純量 (投影長度)
-2. |a><b| 表示aN1,b1N 做矩陣運算，結果是NxN矩陣 (向量Span)
+1. $$ \bra{a}\ket{b} $$ 表示 $$ a_{1N}, b_{N1} $$ 向量矩陣乘法，結果是純量 (投影長度)
+2. $$ \ket{a}\bra{b} $$ 表示 $$ a_{N1}, b_{1N} $$ 做矩陣外積運算，結果是NxN矩陣 (向量Span)
 
 # 先驗知識:
-https://ocw.aca.ntu.edu.tw/ntu-ocw/ocw/cou/102S207
-https://ocw.nthu.edu.tw/ocw/index.php?page=chapter&cid=289&chid=6153
+[台大線性代數課程](https://ocw.aca.ntu.edu.tw/ntu-ocw/ocw/cou/102S207)
+
+[複數課程第一課](https://ocw.nthu.edu.tw/ocw/index.php?page=chapter&cid=289&chid=6153)
 
 # 引用:
-'''markdown
+```markdown
 @article{
 
   author       = {Jeng-Ting, Chen},
@@ -82,4 +124,4 @@ https://ocw.nthu.edu.tw/ocw/index.php?page=chapter&cid=289&chid=6153
 
   timestamp    = {Sat, 13 Thu 2024 10:58:00 +0800},
 }
-'''
+```
