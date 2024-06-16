@@ -53,6 +53,7 @@ type NavLink = {
 
 export const navLinks: NavLink[] = [
   { label: "財經資訊宇宙", url: "/categories/財經資訊宇宙" },
+  { label: "量子計算宇宙", url: "/categories/量子計算宇宙" },
   { label: "人工智慧宇宙", url: "/categories/人工智慧宇宙" },
   { label: "易經推演宇宙", url: "/categories/易經推演宇宙" },
 
