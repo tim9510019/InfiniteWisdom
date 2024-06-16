@@ -1,0 +1,85 @@
+---
+title: "迎戰未來，AI 量子計算基礎篇 (1)，Single Systems"
+category: "量子計算宇宙"
+subcategory: "量子計算基礎"
+date: "2024/06/13"
+heroImage: {
+    src: "./hero.jpg",
+    alt: "量子計算",
+    }
+tags: ["QuantumComputing", "Qiskit", "braket", "Hadamard", "PlusState", "MinusState", "BlochSphere", "AI量子計算", "量子計算基礎", "3C"]
+author: "Tim Chen"
+isDraft: false
+---
+<p align="center"><iframe width="100%" height="315" src="https://www.youtube.com/watch?v=3-c4xJa7Flk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+
+# 導言:
+量子計算是最終的計算形式，熟悉量子計算的各種概念與演算法，在未來，可用來模擬宇宙的運行，生命的繁衍，全社會的複雜系統運作，也能做出更為自然與高效率的人工智慧。在量子計算準備大行其道的八年前 (西元2024年)，我將帶著大家，按部就班地掌握量子計算，正如同10年前提早準備人工智慧一樣，善用原子習慣 + 超前學習，通往成功就是輕鬆且愉快的事情。
+
+# 傳統位元信息:
+傳統位元訊息只能表達單一狀態，如位元集合 Σ = {0, 1} ，0是低電壓，1是高電壓，兩種狀態不可能同時存在。
+傳統位元訊息表達50%是0，50%是1，需額外動用兩個浮點數，可以寫成向量的形式如 (0.5, 0.5)，第一個位置代表0發生的機率，第二個位置代表1發生的機率
+傳統位元訊息利用矩陣計算(線性代數)來對上述的向量進行運算，矩陣M1,M2，M1M2v = (M1M2)v，矩陣特性無限制
+傳統位元訊息的單一運算閘無法產生矩陣運算的效果
+
+# 量子位元信息:
+量子位元訊息，在進行測量之前，可以是0和1的疊加態，寫成 a|0> + b|1>
+承上，(a, b) ∈C2 (皆為複數) ， 且滿足 aa† + bb† = 1 (†為共軛複數)，量測後看到0的機率是 aa†，看到1的機率是 bb†
+量子位元在量測之前，天生自帶混合狀態，經過一連串計算以後，最後才進行測量
+有特殊名字的量子疊加態定義:
+$$
+Plus State:  |+> = 1/√2 |0> + 1/√2 |1>
+Minus State: |-> = 1/√2 |0> - 1/√2 |1>
+$$
+對量子位元進行運算的矩陣(運算閘)，必為U么正矩陣(unitary)，滿足以下特性:
+UU† = U†U = I, U反矩陣 = U† (†為共軛矩陣)
+作用後的量子位元能保持​ $$ aa† + bb† = 1，||Uv|| = ||v|| = 1 $$
+常見的量子矩陣(運算閘)與特性
+$$
+I = |1 0| , σ_x = |0 1|, σ_y = |0 -i|, σ_z = |1  0|
+    |​0 1|         |1 0|        |i  0|        |0 -1|
+$$
+I 保留原本量子位元的疊加態，σ_x稱為bit flip (NOT)，σ_z 稱為phase flip
+$$
+P_θ = |1    0|
+      |0 e^iθ|
+$$
+相位旋轉操作，轉90度稱為S，轉45度稱為T​
+$$
+H = |1/√2  1/√2|
+    |1/√2 -1/√2|
+$$
+$$
+Hadamard運算，H|0> = |+>​，H|1> = |->​
+             H|+> = |1>​，H|-> = |0>​​
+$$
+$$  
+(HSH)^2 = σ_x
+$$
+一個量子位元有兩個虛數的訊息量
+一次量子Single System (單位元閘) 計算，相當於計算了2x2複數矩陣與2x1複數向量的矩陣乘法
+量子位元疊加態可以用Bloch球面來表達
+
+# 基本定義:
+1. <a || b>表示a1N bN1 向量矩陣乘法，結果是純量 (投影長度)
+2. |a><b| 表示aN1,b1N 做矩陣運算，結果是NxN矩陣 (向量Span)
+
+# 先驗知識:
+https://ocw.aca.ntu.edu.tw/ntu-ocw/ocw/cou/102S207
+https://ocw.nthu.edu.tw/ocw/index.php?page=chapter&cid=289&chid=6153
+
+# 引用:
+'''markdown
+@article{
+
+  author       = {Jeng-Ting, Chen},
+
+  title        = {迎戰未來，AI 量子計算基礎篇 (1)，Single Systems},  
+
+  year         = {2024},
+
+  url          = {https://vocus.cc/article/666aeab1fd8978000164ad86},  
+
+  timestamp    = {Sat, 13 Thu 2024 10:58:00 +0800},
+}
+'''
