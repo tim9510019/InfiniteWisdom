@@ -37,6 +37,7 @@ const processPostsMinutes = async () => {
   return postIdToMinutesMap;
 };
 const postIdToMinutesMap = await processPostsMinutes();
+// console.log(Object.keys(classifiedPosts))
 ---
 
 <BaseLayout pageTitle="首頁">
@@ -49,7 +50,7 @@ const postIdToMinutesMap = await processPostsMinutes();
   <div class="py-6 flex gap-4">
     <div class="flex flex-col gap-3 max-lg:w-full">
       {
-        Object.keys(classifiedPosts).reverse().map((category) => {
+        ["財經資訊宇宙", "量子計算宇宙", "人工智慧宇宙", "易經推演宇宙"].map((category) => {
           return (
             <CategorySection
               category={category}
