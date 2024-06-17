@@ -17,7 +17,7 @@ isDraft: false
 <p align="center"><iframe width="100%" height="315" src="https://www.youtube.com/embed/3-c4xJa7Flk?si=MaKwRUuK01_ebU-u" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
 
 # 傳統位元信息:
-- 傳統位元訊息只能表達單一狀態，如位元集合 Σ = {0, 1} ，0是低電壓，1是高電壓，兩種狀態不可能同時存在。
+- 傳統位元訊息只能表達單一狀態，如位元集合 $$ \Sigma = \{0, 1\} $$ ，0是低電壓，1是高電壓，兩種狀態不可能同時存在。
 - 傳統位元訊息表達50%是0，50%是1，需額外動用兩個浮點數，可以寫成向量的形式如 (0.5, 0.5)，第一個位置代表0發生的機率，第二個位置代表1發生的機率
 - 傳統位元訊息利用矩陣計算(線性代數)來對上述的向量進行運算，矩陣$$ M_{1},M_{2}，M_{1}M_{2}v = (M_{1}M_{2})v $$，矩陣特性無限制
 - 傳統位元訊息的單一運算閘無法產生矩陣運算的效果
@@ -26,7 +26,7 @@ isDraft: false
 - 量子位元訊息，在進行測量之前，可以是0和1的疊加態，寫成:
   - $$ \ket{\psi} = \alpha\ket{0} + \beta\ket{1} $$
   - $$ (\alpha, \beta) \in C^{2} $$(皆為複數)
-  - $$ \alpha\alpha^{\dagger} + \beta\beta^{\dagger} = 1 $$
+  - $$ \alpha\alpha^{\dagger} + \beta\beta^{\dagger} = 1 $$ ($$ \dagger $$ 為共軛)
   - 量測量子位元後看到 0的機率是 $$ \alpha\alpha^{\dagger} $$，看到 1的機率是 $$ \beta\beta^{\dagger} $$
 
 - 量子位元在量測之前，天生自帶混合狀態，經過一連串計算以後，最後才進行測量
@@ -36,7 +36,7 @@ isDraft: false
 
 - 對量子位元進行運算的矩陣(運算閘)，必為U[么正矩陣](https://en.wikipedia.org/wiki/Unitary_matrix)(unitary)，滿足以下特性:
   - $$ UU^{\dagger} = U^{\dagger}U = I $$
-  - $$ U^{-1} = U^{\dagger} $$ (†為共軛)
+  - $$ U^{-1} = U^{\dagger} $$ ($$ \dagger $$ 為共軛)
   - 作用後的量子位元能保持​ $$ \alpha\alpha^{\dagger} + \beta\beta^{\dagger} = 1 $$, $$ ||Uv|| = ||v|| = 1 $$
 
 - 常見的量子矩陣(運算閘)與特性:
