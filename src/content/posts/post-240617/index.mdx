@@ -18,7 +18,7 @@ isDraft: false
 
 # 傳統位元信息:
 - 多個傳統位元訊息表達 Compound System，寫作 $$ (X, Y) $$ 或是 $$ XY $$ ，其中 $$ X $$ 代表一個擁有傳統位元集合 $$ \Sigma $$ 的系統，其中 $$ Y $$ 代表一個擁有傳統位元集合 $$ \Gamma $$ 的系統
-- $$ \Sigma \times \Gamma $$，又稱為笛卡爾積，直積 (cartesian product)，完整定義如下所示:
+- $$ \Sigma \times \Gamma $$ ，又稱為笛卡爾積，直積 (cartesian product)，完整定義如下所示:
   - $$ \Sigma \times \Gamma = \{(a, b) : a \in \Sigma, b \in \Gamma \} $$
 - If $$ \Sigma_{1} = \Sigma_{2} = \Sigma_{3} = {0, 1} $$, then the classical state set of $$ \{X_{1}, X_{2}, X_{3}\} $$ is:
   - $$ \Sigma_{1} \times \Sigma_{2} \times \Sigma_{3}  = \{(0, 0, 0), (0, 0, 1), ..., (1, 1, 0), (1, 1 ,1)\} $$
@@ -26,6 +26,7 @@ isDraft: false
   - $$ \Sigma_{1} \times \Sigma_{2} \times ... \times \Sigma_{n} = (0, 1)^n $$
 - Tensor Product of two vectors $$ \ket{\phi} = \sum_{a \in \Sigma} \alpha_a \ket{a} $$, $$ \ket{\psi} = \sum_{b \in \Gamma} \beta_b \ket{b} $$
   - $$ \ket{\phi} \otimes \ket{\psi} = \sum_{(a,b) \in \Sigma \times \Gamma} \alpha_a \beta_b \ket{ab} $$
+  - $$ \ket{\phi} \ket{\psi} =  \ket{\phi} \otimes \ket{\psi} = \ket{\phi \otimes \psi} = \ket{(\phi, \psi)} = \ket{\phi, \psi} = \ket{\phi \psi} $$
 - 給定一個 $$ (X, Y) $$ 的機率狀態，我們稱 $$ X $$ 和 $$ Y $$ 為獨立事件 (Independent)，如果滿足以下規則:
   - $$ P_{r}((X, Y) = (a, b)) = P_{r}(X = a) P_{r}(Y = b) $$ for all $$ a \in \Sigma $$ and $$ b \in \Gamma $$
   - For example, 以下 probability state of $$ \{X, Y\} $$ 是 independent:
@@ -35,6 +36,29 @@ isDraft: false
   - For example, 以下 probability state of $$ \{X, Y\} $$ "不是" independent:
     - $$ \frac{1}{2} \ket{00} + \frac{1}{2} \ket{11} $$
     - 由於 $$ \ket{01} $$,  $$ \ket{10} $$ 機率為0，如果要 independent，意味著 $$ \ket{0} $$, $$ \ket{1} $$ 其中一個機率是0，就會和 $$ \ket{00} $$, $$ \ket{11} $$ 機率為 $$ \frac{1}{2} $$ 矛盾
+- 想知道 $$ P_{r} (X = a) $$ 可以把 $$ \ket{a} $$ 提出來， 經整理 $$ P_{r} (X = a) = \sum_{b \in \Gamma} p_{ab} $$:
+  - $$ \sum_{(a,b) \in \Sigma \times \Gamma} p_{ab} \ket{ab} = \sum_{(a,b) \in \Sigma \times \Gamma} p_{ab} \ket{a} \otimes \ket{b} = \sum_{a \in \Sigma} \ket{a} * (\sum_{b \in \Gamma} p_{ab} \ket{b}) $$
+  - 已知 X = a 的條件機率向量 $$ Y $$ 可以寫成 $$ \frac{\sum_{b \in \Gamma} p_{ab} \ket{b}}{\sum_{b \in \Gamma} p_{ab}} $$ ，分母可以看成正規化，確保整個機率總合為1
+- Control-NOT，If X == 1, Flip Y，X被稱為Control-bit，Y被稱為Target-bit
+  $$ 
+    \begin{pmatrix}
+    \ket{00} \rightarrow \ket{00} \\
+    \ket{01} \rightarrow \ket{01} \\
+    \ket{10} \rightarrow \ket{11} \\
+    \ket{11} \rightarrow \ket{10} \\
+    \end{pmatrix}
+  $$
+- 上述 Control-NOT的轉換矩陣可以寫成 4X4 矩陣，4種狀態 $$ (0, 1)^2 $$ (2x2) 轉換成4種新狀態
+  $$ 
+    \begin{pmatrix}
+    1 0 0 0 \\
+    0 1 0 0\\
+    0 0 0 1 \\
+    0 0 1 0 \\
+    \end{pmatrix}
+  $$
+- 有了轉換矩陣以後，產生新的問題，如果$$ M $$，$$ N $$ 分別作用在 $$ X, Y $$，我們要如何表示 $$ M, N $$ 同時作用在 $$ (X, Y) $$ 的結果?
+  - To be continued
 
 # 量子位元信息:
 - To be continued
