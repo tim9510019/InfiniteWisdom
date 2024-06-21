@@ -59,14 +59,43 @@ isDraft: false
 - 上述 Control-NOT的轉換矩陣可以寫成 4X4 矩陣，4種狀態 $$ (0, 1)^2 $$ (2x2) 轉換成4種新狀態
   $$ 
     \begin{pmatrix}
-    1 0 0 0 \\
-    0 1 0 0\\
-    0 0 0 1 \\
-    0 0 1 0 \\
+    1 & 0 & 0 & 0 \\
+    0 & 1 & 0 & 0\\
+    0 & 0 & 0 & 1 \\
+    0 & 0 & 1 & 0 \\
     \end{pmatrix}
   $$
 - 有了轉換矩陣以後，產生新的問題，如果$$ M $$，$$ N $$ 分別作用在 $$ X, Y $$，我們要如何表示 $$ M, N $$ 同時作用在 $$ (X, Y) $$ 的結果?
-  - To be continued
+- $$ M = \sum_{a, b \in \Sigma} \alpha_{ab} \ket{a} \bra{b} $$, $$ N = \sum_{c, d \in \Gamma} \beta_{cd} \ket{c} \bra{d} $$
+- $$ M \otimes N = \sum_{a, b \in \Sigma} \sum_{c, d \in \Gamma} \alpha_{ab} \beta_{cd} \ket{ac} \bra{bd} $$
+- 進階可以用內積來定義 $$ M \otimes N $$ :
+  - $$ \forall (a, b) \in \Sigma $$, $$ (c, d) \in \Gamma $$
+  - $$ \bra{ac} M \otimes N \ket{bd} = \bra{a} M \ket{b} \bra{c} N \ket{d} $$
+  - $$ M \otimes N \ket{\phi \otimes \psi} = M \otimes \ket{\phi} N \otimes \ket{\psi}$$
+- $$ M \in R^{2 \times 2 }, N \in R^{2 \times 2} $$, $$ M \otimes N \in R^{4 \times 4} $$
+- 計算 $$ M \otimes N $$ 的訣竅， 假設 $$ (a, b) \in \{0, 1\}^{2} $$:
+- 先把 N 的矩陣做 2 x 2 排列 (寫四遍)，把M的每個元素 $$ \alpha_{ab} $$ 各自寫在四個矩陣前面
+$$
+  \begin{pmatrix}
+  \alpha_{00} & \alpha_{01} \\
+  \alpha_{10} & \alpha_{11} \\
+  \end{pmatrix}
+  \otimes
+  \begin{pmatrix}
+  \beta_{00} & \beta_{01} \\
+  \beta_{10} & \beta_{11} \\
+  \end{pmatrix}
+$$
+- 寫完全部組合在一起，即可得到 4 x 4 矩陣
+$$ 
+  \small
+  \begin{pmatrix}
+  \bold{\alpha_{00}}\beta_{00} & \bold{\alpha_{00}}\beta_{01} & \bold{\alpha_{01}}\beta_{00} & \bold{\alpha_{01}}\beta_{01} \\
+  \bold{\alpha_{00}}\beta_{10} & \bold{\alpha_{00}}\beta_{11} & \bold{\alpha_{01}}\beta_{10} & \bold{\alpha_{01}}\beta_{11} \\
+  \bold{\alpha_{10}}\beta_{00} & \bold{\alpha_{10}}\beta_{01} & \bold{\alpha_{11}}\beta_{00} & \bold{\alpha_{11}}\beta_{01} \\
+  \bold{\alpha_{10}}\beta_{10} & \bold{\alpha_{10}}\beta_{11} & \bold{\alpha_{11}}\beta_{10} & \bold{\alpha_{11}}\beta_{11} \\
+  \end{pmatrix}
+$$
 
 # 量子位元信息:
 - To be continued
