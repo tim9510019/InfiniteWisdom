@@ -26,25 +26,28 @@ export function buildToc(headings: MarkdownHeading[]) {
 }
 
 export function useScrollDirection() {
-  const prevScrollY = useRef<number>(0);
-  // const isScrollDown = useRef<boolean>(false);
   const [isScrollDown, setIsScrollDown] = useState<boolean>(false);
+  const [lastScrollY, setLastScrollY] = useState<number>(0);
+
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > prevScrollY.current) {
-        // isScrollDown.current = true;
-        setIsScrollDown(true);
-      } else if (window.scrollY <= prevScrollY.current) {
-        // isScrollDown.current = false;
-        setIsScrollDown(false);
+      const currentScrollY = window.scrollY;
+      const scrollHeight = document.documentElement.scrollHeight;
+      const windowHeight = window.innerHeight;
+
+      // 忽略超過內容範圍的彈性滾動
+      if (currentScrollY < 0 || currentScrollY > scrollHeight - windowHeight) {
+        return;
       }
-      prevScrollY.current = window.scrollY;
+
+      setIsScrollDown(currentScrollY > lastScrollY);
+      setLastScrollY(currentScrollY);
     };
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [lastScrollY]);
+
   return isScrollDown;
 }
 
