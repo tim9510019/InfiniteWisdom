@@ -95,23 +95,23 @@
   .padding-b {
       @apply sm:pb-24 pb-12;
     }
+
+  .transition-navbar {
+    @apply transition-transform duration-500 ease-in-out ;
+  }
 }
 
 iframe {
-  @apply max-w-[560px]
+  @apply max-w-[560px] mx-auto
 }
 
-span[aria-hidden="true"]{
+span[aria-hidden="true"] {
   @apply hidden
 }
 
-figcaption {
-  @apply mb-4 mt-0
-}
-
-.prose img {
-  @apply mb-2
-}
+/* span.katex {
+  @apply text-xs
+} */
 
 
 /* PO文內容的style */

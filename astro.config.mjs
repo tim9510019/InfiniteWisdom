@@ -3,8 +3,6 @@ import mdx from "@astrojs/mdx";
 import react from "@astrojs/react";
 import tailwind from "@astrojs/tailwind";
 import icon from "astro-icon";
-import remarkMath from "remark-math"
-import rehypeKatex from "rehype-katex"
 import {
   transformerNotationDiff,
   transformerNotationHighlight,
@@ -15,6 +13,10 @@ import {
   transformerMetaWordHighlight,
 } from "@shikijs/transformers";
 import { remarkReadingTime } from "./remark-plugins/remark-reading-time.mjs";
+// mdx latex
+import rehypeKatex from "rehype-katex"; // relevant
+import remarkMath from "remark-math"; // relevant
+// astro db
 // import db from "@astrojs/db";
 
 import vercel from "@astrojs/vercel/serverless";

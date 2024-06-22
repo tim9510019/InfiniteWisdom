@@ -1,13 +1,28 @@
 ---
+// css styles
 import "../styles/global.css";
+// astro components
 import Footer from "@/components/Footer/Footer.astro";
+import { getCollection } from "astro:content";
+// react components
 import MainNavBar from "@/components/MainNavBar/MainNavBar";
 import Sidebar from "@/components/Sidebar";
+// view transitions
 import { ViewTransitions } from "astro:transitions";
+
+const posts = await getCollection(
+  "posts",
+  (post) => post.data.isDraft !== true
+);
+
 interface Props {
   pageTitle: string;
 }
 const { pageTitle } = Astro.props;
+const {
+  url: { pathname },
+} = Astro;
+const rootPath = pathname.split("/")[1];
 ---
 
 <html lang="zh-hant">
@@ -21,8 +36,8 @@ const { pageTitle } = Astro.props;
     <ViewTransitions />
   </head>
   <body>
-    <MainNavBar client:only="react" />
-    <Sidebar client:only="react" />
+    <MainNavBar client:only="react" rootPath={rootPath} posts={posts} />
+    <Sidebar client:only="react" rootPath={rootPath} />
     <main id="main" class="max-container pt-[65px]">
       <slot />
     </main>

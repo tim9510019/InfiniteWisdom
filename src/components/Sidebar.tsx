@@ -1,11 +1,21 @@
+// constants
 import { navLinks } from "@/constants/links";
+// nano store
 import { useStore } from "@nanostores/react";
 import { isSidebarOpenStore } from "@/store/isSidebarOpenStore";
 import { themeStore } from "@/store/contextStore";
-import Logo from "./MainNavBar/Logo";
+// react components
+// import Logo from "./MainNavBar/Logo";
+// react
 import { useEffect } from "react";
+// shadCN
+import { Button } from "./ui/button";
 
-const Sidebar = () => {
+type Props = {
+  rootPath: string;
+};
+
+const Sidebar = ({ rootPath }: Props) => {
   const isSidrbarOpen = useStore(isSidebarOpenStore);
   const theme = useStore(themeStore);
   useEffect(() => {
@@ -29,16 +39,37 @@ const Sidebar = () => {
             </div> */}
             <div>
               <div className="flex flex-col items-center gap-3 text-lg">
-                {navLinks.map((link) => (
-                  <a
-                    key={link.url}
-                    href={link.url}
-                    onClick={() => {
-                      isSidebarOpenStore.set(false);
-                    }}
+                {["財經資訊宇宙", "量子計算宇宙", "人工智慧宇宙", "易經推演宇宙"].map((category, index)=> <Button
+                    key={index}
+                    variant="link"
+                    className={`p-0 text-base`}
                   >
-                    {link.label}
-                  </a>
+                    <a
+                      href={`/blog?category=${category}`}
+                      onClick={() => {
+                        isSidebarOpenStore.set(false);
+                      }}
+                    >
+                      {category}
+                    </a>
+                  </Button>)}
+                {navLinks.map((link, index) => (
+                  <Button
+                    key={index}
+                    variant="link"
+                    className={`p-0 text-base ${
+                      rootPath === link.url.split("/")[1] && "underline"
+                    }`}
+                  >
+                    <a
+                      href={link.url}
+                      onClick={() => {
+                        isSidebarOpenStore.set(false);
+                      }}
+                    >
+                      {link.label}
+                    </a>
+                  </Button>
                 ))}
               </div>
             </div>
