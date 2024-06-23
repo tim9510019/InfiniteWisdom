@@ -60,7 +60,7 @@ isDraft: false
   $$ 
     \begin{pmatrix}
     1 & 0 & 0 & 0 \\
-    0 & 1 & 0 & 0\\
+    0 & 1 & 0 & 0 \\
     0 & 0 & 0 & 1 \\
     0 & 0 & 1 & 0 \\
     \end{pmatrix}
@@ -85,12 +85,12 @@ $$
   M \otimes N = 
   \begin{pmatrix}
   \alpha_{00} & \alpha_{01} \\
-  \alpha_{10} & \alpha_{11}
+  \alpha_{10} & \alpha_{11} \\
   \end{pmatrix}
   \otimes
   \begin{pmatrix}
   \beta_{00} & \beta_{01} \\
-  \beta_{10} & \beta_{11}
+  \beta_{10} & \beta_{11} \\
   \end{pmatrix}
 $$
 - 寫完全部組合在一起，即可得到 4 x 4 矩陣
@@ -100,14 +100,14 @@ $$ =
   \bold{\alpha_{00}}\beta_{00} & \bold{\alpha_{00}}\beta_{01} & \bold{\alpha_{01}}\beta_{00} & \bold{\alpha_{01}}\beta_{01} \\
   \bold{\alpha_{00}}\beta_{10} & \bold{\alpha_{00}}\beta_{11} & \bold{\alpha_{01}}\beta_{10} & \bold{\alpha_{01}}\beta_{11} \\
   \bold{\alpha_{10}}\beta_{00} & \bold{\alpha_{10}}\beta_{01} & \bold{\alpha_{11}}\beta_{00} & \bold{\alpha_{11}}\beta_{01} \\
-  \bold{\alpha_{10}}\beta_{10} & \bold{\alpha_{10}}\beta_{11} & \bold{\alpha_{11}}\beta_{10} & \bold{\alpha_{11}}\beta_{11}
+  \bold{\alpha_{10}}\beta_{10} & \bold{\alpha_{10}}\beta_{11} & \bold{\alpha_{11}}\beta_{10} & \bold{\alpha_{11}}\beta_{11} \\
   \end{pmatrix}
 $$
 - 如果要表達M作用在X，然後無任何作用在Y，滿足獨立事件(independent)操作，我們可以用Identity Matrix 來表示無動作的概念，由於是獨立事件，可以用Tensor product計算對Compound system造成的影響
 $$
   \begin{pmatrix}
   1 & \frac{1}{2} \\
-  0 & \frac{1}{2}
+  0 & \frac{1}{2} \\
   \end{pmatrix}
   \otimes
   \begin{pmatrix}
@@ -119,7 +119,7 @@ $$
   1 & 0 & \frac{1}{2} & 0 \\
   0 & 1 & 0 & \frac{1}{2} \\
   0 & 0 & \frac{1}{2} & 0 \\
-  0 & 0 & 0 & \frac{1}{2}
+  0 & 0 & 0 & \frac{1}{2} \\
   \end{pmatrix}
 $$
 
