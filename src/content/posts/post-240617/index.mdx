@@ -161,10 +161,9 @@ $$
 - 對 X 進行量測，假設 X = a，則對於整個 (X,Y) 系統進行了部分機率塌縮，(X, Y)系統變成:
   - $$ \ket{a}\otimes\frac{\ket{\phi_{a}}}{||\phi_{a}||} $$
 - 以下是一個簡單範例來演示上述的概念:
-- $$ \ket{\psi} = \frac{1}{\sqrt{2}}\ket{00} +\frac{1}{2}\ket{01} +\frac{i}{2\sqrt{2}}\ket{10} - \frac{1}{2\sqrt{2}}\ket{11} $$
+  - $$ \ket{\psi} = \ket{0}\otimes\psi_{0} + \ket{1}\otimes\psi_{1} $$
   - $$ \ket{\psi_{0}} = (\frac{1}{\sqrt{2}}\ket{0} +\frac{1}{2}\ket{1}) $$
   - $$ \ket{\psi_{1}} = (\frac{i}{2\sqrt{2}}\ket{0} - \frac{1}{2\sqrt{2}}\ket{1}) $$
-  - $$ \ket{\psi} = \ket{0}\otimes\psi_{0} + \ket{1}\otimes\psi_{1} $$
   - $$ Pr(X=0) = ||\psi_{0}||^{2} = \frac{1}{2} + \frac{1}{4} = \frac{3}{4} $$
 - 如上，我們假設量測後得到X = 0，則整個(X, Y)系統 X 的部分確定為 0，整個Compund System (X, Y)要被改寫成:
   - $$ \ket{0}\otimes\frac{\frac{1}{\sqrt{2}}\ket{0}+\frac{1}{2}\ket{1}}{\sqrt{\frac{3}{4}}} $$
