@@ -23,7 +23,7 @@ isDraft: false
 - If $$ \Sigma_{1} = \Sigma_{2} = \Sigma_{3} = {0, 1} $$, then the classical state set of $$ \{X_{1}, X_{2}, X_{3}\} $$ is:
   - $$ \Sigma_{1} \times \Sigma_{2} \times \Sigma_{3} $$
   - $$ = \{(0, 0, 0), (0, 0, 1), ..., (1, 1 ,1)\} $$
-- N-tuple $$ (a_{1}, a_{2}, ..., a_{n}) $$ 可以寫成 $$ a_{1}a_{2}...a_{n} $$, cartesian product 可寫成如下形式:
+- N-tuple $$ (a_{1}, a_{2}, ..., a_{n}) $$ 可寫成 $$ a_{1}a_{2}...a_{n} $$, cartesian product 可寫成如下形式:
   - $$ \Sigma_{1} \times \Sigma_{2} \times ... \times \Sigma_{n} = (0, 1)^n $$
 - Tensor Product of two vectors: 
   - Given $$ \ket{\phi} = \sum_{a \in \Sigma} \alpha_a \ket{a} $$, $$ \ket{\psi} = \sum_{b \in \Gamma} \beta_b \ket{b} $$
@@ -31,7 +31,7 @@ isDraft: false
   - $$ \ket{\phi} \ket{\psi} = \ket{\phi} \otimes \ket{\psi} $$
   - $$ = \ket{\phi \otimes \psi} = \ket{(\phi, \psi)} $$
   - $$ = \ket{\phi, \psi} = \ket{\phi \psi} $$
-- 給定一個 $$ (X, Y) $$ 的機率狀態，我們稱 $$ X $$ 和 $$ Y $$ 為獨立事件 (Independent)，如果滿足以下規則:
+- 給定一個 $$ (X, Y) $$ 的機率狀態，我們稱 X 和 Y 為獨立事件 (Independent)，如果滿足以下規則:
   - $$ P_{r}((X, Y) = (a, b)) $$
   - $$ = P_{r}(X = a) P_{r}(Y = b) $$ for all $$ a \in \Sigma $$ and $$ b \in \Gamma $$
 - For example, 以下 probability state of $$ \{X, Y\} $$ 是 independent:
@@ -133,8 +133,8 @@ $$
   - $$ \ket{0}_{X} \ket{1}_{Y} $$
 - Qubits $$ \ket{\phi} $$, $$ \ket{\psi} $$ 如果彼此完全獨立，可以寫成Product State的形式，也就是傳統位元訊息介紹過的Tensor Product:
   - $$ \ket{\phi} \otimes \ket{\psi} $$
-  - $$ \frac{1}{2} \ket{00} + \frac{i}{2} \ket{01} - \frac{1}{2} \ket{10} - \frac{i}{2} \ket{11} $$
-  - $$ = (\frac{1}{\sqrt{2}} \ket{0} - \frac{1}{\sqrt{2}} \ket{1}) \otimes (\frac{1}{\sqrt{2}} \ket{0} + \frac{i}{\sqrt{2}} \ket{1}) $$
+  - $$ \frac{1}{2} \ket{00} + \frac{i}{2} \ket{01} - \frac{1}{2} \ket{10} - \frac{i}{2} \ket{11} $$ 可以寫成如下的Tensor Product:
+  - $$ (\frac{1}{\sqrt{2}} \ket{0} - \frac{1}{\sqrt{2}} \ket{1}) \otimes (\frac{1}{\sqrt{2}} \ket{0} + \frac{i}{\sqrt{2}} \ket{1}) $$
   - $$ \frac{1}{\sqrt{2}} \ket{00} + \frac{1}{\sqrt{2}} \ket{11} $$ 不是Product state
 - 有特殊名字的Quantum state定義，four Bell states (非Product state):
   - $$ \ket{\phi^{+}} = \frac{1}{\sqrt{2}}\ket{00} + \frac{1}{\sqrt{2}}\ket{11} $$
