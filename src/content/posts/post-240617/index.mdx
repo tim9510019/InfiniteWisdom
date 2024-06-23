@@ -145,6 +145,32 @@ $$
   - $$ \frac{1}{\sqrt{2}}\ket{000} + \frac{1}{\sqrt{2}}\ket{111} $$
 - 有特殊名字的Product state定義，W state (非Product state):
   - $$ \frac{1}{\sqrt{3}}\ket{001} + \frac{1}{\sqrt{3}}\ket{010} + \frac{1}{\sqrt{3}}\ket{100} $$
+- 對量子位元組進行測量，會得到多組狀態中的其中一駔，可以對量子系統進行多次的量測，也可以直接計算出每一個狀態的出現機率，藉由以下的內積公式:
+  - if $$ \ket{\psi} $$ is a quantum state of a system, 要對每一個狀態進行機率量測
+  - System is $$ (X_{1},...,X_{n}) $$
+  - $$ (a_{1},...,a_{n}) \in \Sigma_{1} \times ... \times \Sigma_{n}$$
+  - $$ |\bra{a_{1}...a_{n}}\ket{\psi}|^{2} $$
+- 如果對系統內的某一個系統進行量測，例如對 X 進行量測，然後對 Y 不做任何事情，這個部分有在傳統位元訊息討論過，方式就是蒐集所有 X 狀態，分組後，分別對 Y 進行加總:
+  - $$ \ket{\psi} = \sum_{(a,b) \in \Sigma\times\Gamma} \alpha_{ab}\ket{ab} $$
+  - $$ |\bra{ab}\ket{\psi}|^{2} = |\alpha_{ab}|^{2} $$
+  - $$ Pr(X = a) = \sum_{b\in\Gamma}|\alpha_{ab}|^{2} $$
+- 把 $$ X = a $$ 的部分先分出來，然後計算分出來的2-Norm，就能得到條件機率的值，也就是只針對 X 進行多次量測統計，就能得到 X=a 出現的機率:
+  - $$ \ket{\psi} = \sum_{a\in\Sigma}\ket{a}\otimes\ket{\phi_{a}} $$
+  - $$ \phi_{a} = \sum_{b\in\Gamma}\alpha_{ab}\ket{b} $$
+  - $$ Pr(X = a) = ||\phi_{a}||^{2} $$
+- 對 X 進行量測，假設 X = a，則對於整個 (X,Y) 系統進行了部分機率塌縮，(X, Y)系統變成:
+  - $$ \ket{a}\otimes\frac{\ket{\phi_{a}}}{||\phi_{a}||} $$
+- 以下是一個簡單範例來演示上述的概念:
+- $$ \ket{\psi} = \frac{1}{\sqrt{2}}\ket{00} +\frac{1}{2}\ket{01} +\frac{i}{2\sqrt{2}}\ket{10} - \frac{1}{2\sqrt{2}}\ket{11} $$
+  - $$ \ket{\psi_{0}} = (\frac{1}{\sqrt{2}}\ket{0} +\frac{1}{2}\ket{1}) $$
+  - $$ \ket{\psi_{1}} = (\frac{i}{2\sqrt{2}}\ket{0} - \frac{1}{2\sqrt{2}}\ket{1}) $$
+  - $$ \ket{\psi} = \ket{0}\otimes\psi_{0} + \ket{1}\otimes\psi_{1} $$
+  - $$ Pr(X=0) = ||\psi_{0}||^{2} = \frac{1}{2} + \frac{1}{4} = \frac{3}{4} $$
+- 如上，我們假設量測後得到X = 0，則整個(X, Y)系統 X 的部分確定為 0，整個Compund System (X, Y)要被改寫成:
+  - $$ \ket{0}\otimes\frac{\frac{1}{\sqrt{2}}\ket{0}+\frac{1}{2}\ket{1}}{\sqrt{\frac{3}{4}}} $$
+  - $$ \ket{0}\otimes(\sqrt{\frac{2}{3}}\ket{0}+\frac{1}{\sqrt{3}}\ket{1}) $$
+  - $$ \sqrt{\frac{2}{3}}\ket{00}+\frac{1}{\sqrt{3}}\ket{01} $$
+- 我們可以用同樣的原理，計算如果X = 1的情況，或是對Y進行量測，Y = 0 ，Y = 1的情況
 - To be continued
 
 # 先驗知識:
