@@ -123,7 +123,31 @@ $$
 $$
 
 # 量子位元信息:
-- To be continued
+- Quantum State 的所有係數 2-norm為1 (遇到複數，長度是自己乘上Conjugate)，假設X, Y皆為qubit，(X,Y) 可以寫成以下的範例形式:
+  - $$ \frac{1}{2} \ket{00} + \frac{i}{2} \ket{01} - \frac{1}{2} \ket{10} - \frac{i}{2} \ket{11} $$
+  - $$ \frac{3}{5} \ket{00} + \frac{4}{5} \ket{11} $$
+  - $$ \ket{01} $$
+  - $$ \frac{1}{2} \ket{0} \otimes \ket{0} + \frac{i}{2} \ket{0} \otimes \ket{1} - \frac{1}{2} \ket{1} \otimes \ket{0} - \frac{i}{2} \ket{1} \otimes \ket{1} $$
+  - $$ \frac{3}{5} \ket{0} \otimes \ket{0} + \frac{4}{5} \ket{1} \otimes \ket{1} $$
+  - $$ \ket{0} \otimes \ket{1} $$
+  - $$ \frac{1}{2} \ket{0}_{X} \ket{0}_{Y} + \frac{i}{2} \ket{0}_{X} \ket{1}_{Y} - \frac{1}{2} \ket{1}_{X} \ket{0}_{Y} - \frac{i}{2} \ket{1}_{X} \ket{1}_{Y} $$
+  - $$ \frac{3}{5} \ket{0}_{X} \ket{0}_{Y} + \frac{4}{5} \ket{1}_{X} \ket{1}_{Y} $$
+  - $$ \ket{0}_{X} \ket{1}_{Y} $$
+- Qubits $$ \ket{\phi} $$, $$ \ket{\psi} $$ 如果彼此完全獨立，可以寫成Product State的形式，也就是傳統位元訊息介紹過的Tensor Product:
+  - $$ \ket{\phi} \otimes \ket{\psi} $$
+  - $$ \frac{1}{2} \ket{00} + \frac{i}{2} \ket{01} - \frac{1}{2} \ket{10} - \frac{i}{2} \ket{11} $$
+  - $$ = (\frac{1}{\sqrt{2}} \ket{0} - \frac{1}{\sqrt{2}} \ket{1}) \otimes (\frac{1}{\sqrt{2}} \ket{0} + \frac{i}{\sqrt{2}} \ket{1}) $$
+  - $$ \frac{1}{\sqrt{2}} \ket{00} + \frac{1}{\sqrt{2}} \ket{11} $$ 不是Product state
+- 有特殊名字的Quantum state定義，four Bell states (非Product state):
+  - $$ \ket{\phi^{+}} = \frac{1}{\sqrt{2}}\ket{00} + \frac{1}{\sqrt{2}}\ket{11} $$
+  - $$ \ket{\phi^{-}} = \frac{1}{\sqrt{2}}\ket{00} - \frac{1}{\sqrt{2}}\ket{11} $$
+  - $$ \ket{\psi^{-}} = \frac{1}{\sqrt{2}}\ket{01} + \frac{1}{\sqrt{2}}\ket{10} $$
+  - $$ \ket{\psi^{-}} = \frac{1}{\sqrt{2}}\ket{01} - \frac{1}{\sqrt{2}}\ket{10} $$
+- 有特殊名字的Product state定義，GHZ state (非Product state):
+  - $$ \frac{1}{\sqrt{2}}\ket{000} + \frac{1}{\sqrt{2}}\ket{111} $$
+- 有特殊名字的Product state定義，W state (非Product state):
+  - $$ \frac{1}{\sqrt{3}}\ket{001} + \frac{1}{\sqrt{3}}\ket{010} + \frac{1}{\sqrt{3}}\ket{100} $$
+- to be continued
 
 # 先驗知識:
 [台大線性代數課程](https://ocw.aca.ntu.edu.tw/ntu-ocw/ocw/cou/102S207)
