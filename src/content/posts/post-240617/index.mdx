@@ -170,7 +170,112 @@ $$
   - $$ \ket{0}\otimes(\sqrt{\frac{2}{3}}\ket{0}+\frac{1}{\sqrt{3}}\ket{1}) $$
   - $$ \sqrt{\frac{2}{3}}\ket{00}+\frac{1}{\sqrt{3}}\ket{01} $$
 - 我們可以用同樣的原理，計算如果X = 1的情況，或是對Y進行量測，Y = 0 ，Y = 1的情況
-- To be continued
+- 許多 Unitary Operations 獨立的作用在多個系統上面，則對於Compound System 等同於做Tensor Product:
+  - $$ u_{1} ... u_{n} $$ operates on $$ X_{1} ... X_{n} $$
+  - $$ u_{1} \otimes...\otimes u_{n} $$ on $$ (X_{1} ... X_{n}) $$
+- 如果對於Compound system (X, Y) Unitary Operation 僅作用在 X 上面，則可以寫成:
+  - $$ u_{X} \otimes \mathbb{1}_{Y} $$
+- 不是所有的 Operations 都可以表示成 tensor product of unitary operations，如 SWAP Unitary Operation:
+  - $$ SWAP\ket{\phi\otimes\psi} = \ket{\psi\otimes\phi} $$
+  - $$ SWAP = \sum_{a,b \in \Sigma} \ket{a}\bra{b}\otimes\ket{b}\bra{a} $$
+  $$
+  SWAP = 
+  \begin{pmatrix}
+  1 & 0 & 0 & 0 \\
+  0 & 0 & 1 & 0 \\
+  0 & 1 & 0 & 0 \\
+  0 & 0 & 0 & 1 \\
+  \end{pmatrix}
+  $$
+  - $$ SWAP\ket{\phi^{+}} =  \ket{\phi^{+}} $$
+  - $$ SWAP\ket{\phi^{-}} =  \ket{\phi^{-}} $$
+  - $$ SWAP\ket{\psi^{+}} =  \ket{\psi^{+}} $$
+  - $$ SWAP\ket{\psi^{-}} = -\ket{\psi^{-}} $$
+- 不是所有的 Operations 都可以表示成 tensor product of unitary operations，如 controlled-u Unitary Operation:
+  - $$ \ket{0}\bra{0} \otimes \mathbb{1}_{Y} + \ket{1}\bra{1} \otimes u = $$
+  $$
+  \begin{pmatrix}
+  \mathbb{1}_{Y} & 0 \\
+  0 & u \\
+  \end{pmatrix}
+  $$
+- Controlled-NOT (first qubit as control):
+  - $$ \ket{0}\bra{0} \otimes \mathbb{1}_{Y} + \ket{1}\bra{1} \otimes \sigma_{x} = $$
+  $$
+  \begin{pmatrix}
+  \mathbb{1}_{Y} & 0 \\
+  0 & \sigma_{x} \\
+  \end{pmatrix}
+  $$ 
+  $$
+  =
+  \begin{pmatrix}
+  1 & 0 & 0 & 0 \\
+  0 & 1 & 0 & 0 \\
+  0 & 0 & 0 & 1 \\
+  0 & 0 & 1 & 0 \\
+  \end{pmatrix}
+  $$
+- Controlled-NOT (second qubit as control):
+  - $$ \mathbb{1}_{X} \otimes \ket{0}\bra{0} + \sigma_{x} \otimes \ket{1}\bra{1} = $$
+  $$
+  \begin{pmatrix}
+  1 & 0 & 0 & 0 \\
+  0 & 0 & 0 & 1 \\
+  0 & 0 & 1 & 0 \\
+  0 & 1 & 0 & 0 \\
+  \end{pmatrix}
+  $$
+- Controlled-Z (first qubit as control):
+  - $$ \ket{0}\bra{0} \otimes \mathbb{1}_{Y} + \ket{1}\bra{1} \otimes \sigma_{z} = $$
+  $$
+  \begin{pmatrix}
+  1 & 0 & 0 & 0 \\
+  0 & 1 & 0 & 0 \\
+  0 & 0 & 1 & 0 \\
+  0 & 0 & 0 & -1 \\
+  \end{pmatrix}
+  $$
+- Controlled-Z (second qubit as control):
+  - $$ \mathbb{1}_{X} \otimes \ket{0}\bra{0} + \sigma_{z} \otimes \ket{1}\bra{1} = $$
+  $$
+  \begin{pmatrix}
+  1 & 0 & 0 & 0 \\
+  0 & 1 & 0 & 0 \\
+  0 & 0 & 1 & 0 \\
+  0 & 0 & 0 & -1 \\
+  \end{pmatrix}
+  $$
+- Controlled-SWAP, Fredkin operation (or Fredkin gate) (first qubit as control):
+  - $$ \ket{0}\bra{0} \otimes \mathbb{1}_{Y} + \ket{1}\bra{1} \otimes SWAP = $$
+  $$
+  \begin{pmatrix}
+  1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+  0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+  0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+  0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+  0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+  \end{pmatrix}
+  $$
+- Controlled-Controlled-NOT, Toffoli operation (or Toffoli gate) (first qubit as control):
+  - $$ \ket{0}\bra{0} \otimes \mathbb{1}_{Y} \otimes \mathbb{1}_{Z} + $$
+  $$ \ket{1}\bra{1} \otimes (\ket{0}\bra{0} \otimes \mathbb{1}_{Y} + \ket{1}\bra{1} \otimes \sigma_{x}) $$
+  $$
+  =
+  \begin{pmatrix}
+  1 & 0 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  0 & 1 & 0 & 0 & 0 & 0 & 0 & 0 \\
+  0 & 0 & 1 & 0 & 0 & 0 & 0 & 0 \\
+  0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
+  0 & 0 & 0 & 0 & 1 & 0 & 0 & 0 \\
+  0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
+  0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
+  0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
+  \end{pmatrix}
+  $$
 
 # 先驗知識:
 [台大線性代數課程](https://ocw.aca.ntu.edu.tw/ntu-ocw/ocw/cou/102S207)
