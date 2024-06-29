@@ -23,5 +23,8 @@ pnpm-debug.log*
 # jetbrains setting folder
 .idea/
 
-# Back up folder
+# Back-up folder
 bkup/
+
+# Quantum Circuit Maker
+qcMaker/
