@@ -16,16 +16,124 @@ isDraft: false
 
 <p align="center"><iframe width="100%" height="315" src="https://www.youtube.com/embed/30U2DTfIrOU?si=sLvOXZl76L5Nvvjr" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
 
-# 量子計算線路:
-## 基礎量子線路:
-## 普通閘
+# 基礎量子線路:
+- 線 (Wire) 攜帶訊息，在量子線路裡面就是qubit
+- 閘 (Gate) 表示運算操作，在量子線路裡面也能代表量測操作，Unitary OP or Measurement
+- 線路 (Circuits) 是無環圖 (Acyclic)， 從左到右，不會閉環
+
+## 普通閘範例:
+- 由於用矩陣表達時，輸入被放在右邊，所以OP矩陣連乘由右寫到左 (有一點反直覺，要刻意練習)
 <p align="center">![](./QC1.jpg)</p>
+$$ 
+  H =
+  \begin{pmatrix}
+  \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}  \\
+  \frac{1}{\sqrt{2}} & \frac{-1}{\sqrt{2}} \\
+  \end{pmatrix}
+  \quad
+  S = 
+  \begin{pmatrix}
+  1 & 0 \\
+  0 & i \\
+  \end{pmatrix}
+  \quad
+  T = 
+  \begin{pmatrix}
+  1 & 0 \\
+  0 & \frac{1+i}{\sqrt{2}} \\
+  \end{pmatrix}
+$$
+$$
+  THSH =
+  \begin{pmatrix}
+  \frac{1+i}{2} & \frac{1-i}{2} \\
+  \frac{1}{\sqrt{2}} & \frac{i}{\sqrt{2}} \\
+  \end{pmatrix}
+$$
+$$
+  \begin{pmatrix}
+  \frac{1+i}{2} & \frac{1-i}{2} \\
+  \frac{1}{\sqrt{2}} & \frac{i}{\sqrt{2}} \\
+  \end{pmatrix}
+  \begin{pmatrix}
+  1 \\
+  0 \\
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+  \frac{1+i}{2} \\
+  \frac{1}{\sqrt{2}} \\
+  \end{pmatrix}
+$$
 
-## 控制閘
+## 控制閘:
+- 加號打在X上面(LSB)，X是0的時候維持原樣，X是1的時候Y互換，所以是第2 & 4排互換，1 & 3排維持原順序
+- 多想幾遍，多看幾遍，一回生二回熟，剛開始理解，十分反直覺
 <p align="center">![](./QC2.jpg)</p>
+$$ 
+  \mathbb{1} \otimes H = 
+  \begin{pmatrix}
+  \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}  & 0 & 0 \\
+  \frac{1}{\sqrt{2}} & \frac{-1}{\sqrt{2}} & 0 & 0 \\
+  0 & 0 & \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}  \\
+  0 & 0 & \frac{1}{\sqrt{2}} & \frac{-1}{\sqrt{2}} \\
+  \end{pmatrix}
+$$
+$$ 
+  controlled-NOT (ctrl X) = 
+  \begin{pmatrix}
+  1 & 0 & 0 & 0 \\
+  0 & 0 & 0 & 1 \\
+  0 & 0 & 1 & 0 \\
+  0 & 1 & 0 & 0 \\
+  \end{pmatrix}
+$$
+$$
+  \begin{pmatrix}
+    1 & 0 & 0 & 0 \\
+    0 & 0 & 0 & 1 \\
+    0 & 0 & 1 & 0 \\
+    0 & 1 & 0 & 0 \\
+  \end{pmatrix}
+  \begin{pmatrix}
+  \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}  & 0 & 0 \\
+  \frac{1}{\sqrt{2}} & \frac{-1}{\sqrt{2}} & 0 & 0 \\
+  0 & 0 & \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}  \\
+  0 & 0 & \frac{1}{\sqrt{2}} & \frac{-1}{\sqrt{2}} \\
+  \end{pmatrix}
+$$
+$$ 
+  \begin{pmatrix}
+    \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} & 0 & 0  \\
+    0 & 0 & \frac{1}{\sqrt{2}} & \frac{-1}{\sqrt{2}} \\
+    0 & 0 & \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}}  \\
+    \frac{1}{\sqrt{2}} & \frac{-1}{\sqrt{2}} & 0 & 0 \\
+  \end{pmatrix}
+$$
 
-## 量測符號
+- 從每個Column我們就能看出來如下關係:
+- $$ \ket{00} \rightarrow \ket{\phi^+} $$
+- $$ \ket{01} \rightarrow \ket{\phi^-} $$
+- $$ \ket{10} \rightarrow \ket{\psi^+} $$
+- $$ \ket{11} \rightarrow -\ket{\psi^-} $$
+
+<p align="center">![](./QC21.jpg)</p>
+
+- $$ \ket{\phi_0} = \ket{0}\ket{0} $$
+- $$ \ket{\phi_1} = \ket{0}\ket{+} = \frac{1}{\sqrt{2}}\ket{00} + \frac{1}{\sqrt{2}}\ket{01} $$
+- $$ \ket{\phi_2} = \ket{\phi^+} = \frac{1}{\sqrt{2}}\ket{00} + \frac{1}{\sqrt{2}}\ket{11} $$
+
+## 量測符號:
+- 量測以後就跟傳統位元沒有區別，比較在意的是多次量測看到的統計機率分布
+- Full expression:
 <p align="center">![](./QC3.jpg)</p>
+- Shorthand expression:
+<p align="center">![](./QC31.jpg)</p>
+
+## 常見的Gates:
+
+## U Gates / Control-U Gate:
+
 
 # 量子計算內積正交與投影:
 ## 量子內積:
