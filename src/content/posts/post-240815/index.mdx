@@ -1,0 +1,84 @@
+---
+title: "迎戰未來，AI 量子計算基礎篇 (8)，Grover's Algorithm"
+category: "量子計算宇宙"
+subcategory: "量子計算基礎"
+date: "2024/08/15"
+heroImage: {
+    src: "./hero.jpg",
+    alt: "量子計算",
+    }
+tags: ["QuantumComputing", "QuantumCircuits", "Entanglement", "ControlledNOT",'ControlledSWAP',"Qiskit", "braket", "CartesianProduct", "TensorProduct", "ProbabilityState", "independent", "AI量子計算", "量子計算基礎", "3C"]
+author: "Tim Chen"
+isDraft: false
+---
+# 導言:
+量子計算是最終的計算形式，熟悉量子計算的各種概念與演算法，在未來，可用來模擬宇宙的運行，生命的繁衍，全社會的複雜系統運作，也能做出更為自然與高效率的人工智慧。在量子計算準備大行其道的八年前 (西元2024年)，我將帶著大家，按部就班地掌握量子計算，正如同10年前提早準備人工智慧一樣，善用原子習慣 + 超前學習，通往成功就是輕鬆且愉快的事情。
+
+<p align="center"><iframe width="100%" height="315" src="https://www.youtube.com/embed/hnpjC8WQVrQ?si=dcmJNcw_LO8AjA5S" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+
+## 非結構性搜尋:
+<p align="center">![](./QC1.svg)</p>
+<p align="center">![](./QC2.svg)</p>
+
+## $$ Grover's algorithm $$:
+- $$ Grover's algorithm $$ 一開始會有一個Initialization step，然後重複做Grover operation幾次，然後藉由量測，可能的正確解答，就會出現
+- 運算複雜度為非結構性搜尋最佳，可以大量應用在傳統問題，相位旋轉找答案的技術，可以用在各個領域
+- Phase query gates
+<p align="center">![](./QC3.svg)</p>
+<p align="center">![](./QC4.svg)</p>
+
+- $$ Grover Operation $$
+<p align="center">![](./QC5.svg)</p>
+<p align="center">![](./QC6.svg)</p>
+<p align="center">![](./QC7.svg)</p>
+<p align="center">![](./QC8.svg)</p>
+<p align="center">![](./QC9.svg)</p>
+<p align="center">![](./QC10.svg)</p>
+<p align="center">![](./QC11.svg)</p>
+<p align="center">![](./QC12.svg)</p>
+<p align="center">![](./QC13.svg)</p>
+<p align="center">![](./QC14.svg)</p>
+<p align="center">![](./QC15.svg)</p>
+<p align="center">![](./QC16.svg)</p>
+<p align="center">![](./QC17.svg)</p>
+<p align="center">![](./QC18.svg)</p>
+
+## 決定跌代次數:
+<p align="center">![](./QC19.svg)</p>
+<p align="center">![](./QC20.svg)</p>
+<p align="center">![](./QC21.svg)</p>
+
+## Unique Search
+<p align="center">![](./QC22.svg)</p>
+<p align="center">![](./QC23.svg)</p>
+<p align="center">![](./QC24.svg)</p>
+
+## Multiple Solutions
+<p align="center">![](./QC25.svg)</p>
+<p align="center">![](./QC26.svg)</p>
+
+## Unknown Number of Solutions
+<p align="center">![](./QC27.svg)</p>
+<p align="center">![](./QC28.svg)</p>
+
+
+# 先驗知識:
+[台大線性代數課程](https://ocw.aca.ntu.edu.tw/ntu-ocw/ocw/cou/102S207)
+
+[複數課程第一課](https://ocw.nthu.edu.tw/ocw/index.php?page=chapter&cid=289&chid=6153)
+
+# 引用:
+```markdown
+@article{
+
+  author       = {Jeng-Ting, Chen},
+
+  title        = {迎戰未來，AI 量子計算基礎篇 (8)，Grover's Algorithm},  
+
+  year         = {2024},
+
+  url          = {https://infinite-wisdom.vercel.app/blog/post-240815},  
+
+  timestamp    = {Thu, 15 Aug 2024 09:15:00 +0800},
+}
+```

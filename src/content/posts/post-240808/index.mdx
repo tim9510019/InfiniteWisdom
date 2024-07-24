@@ -18,29 +18,66 @@ isDraft: false
 
 # 相位估計問題:
 ## Spectral theorem for unitary matrices
-- Unitary matrices 可以寫成正交基底的形式，有特徵值與特徵向量
-- 有一個 Unitary quantum circuit 作用在 n 個 qubits 上，有一個n-qubit的量子狀態，用來代表這組 Unitary matrices的特徵向量，然後我們想要用來估計特徵值
+- Unitary matrices (U) 可以寫成正交基底的形式，有特徵值與特徵向量
+- 有一個 Unitary quantum circuit 作用在 n 個 qubits 上，有一個n-qubit的量子狀態，用來代表這組 Unitary matrices 的特徵向量，然後我們想要用來估計特徵值
+$$ 
+\forall \theta \in [0,1), U\ket{\psi} = \exp^{2\pi i\theta}\ket{\psi}
+$$
+- 讓我們一步一步藉由理解相位估計，直到能夠理解質因數分解也可以變成相位估計問題，藉由 $$ Shor's Algorithm $$ 來解
 
 # 相位估計程序:
-
+- 使用 Phase kickback 取得 Eigen value
+<p align="center">![](./QC1.svg)</p>
+<p align="center">![](./QC2.svg)</p>
 
 ## 低精準度相位估計
+- 多次Apply U，可以得到更多關於Phase的資訊
+<p align="center">![](./QC3.svg)</p>
 
+- 使用多個Control bit，也能得到更多關於Phase的資訊
+<p align="center">![](./QC4.svg)</p>
+<p align="center">![](./QC5.svg)</p>
+<p align="center">![](./QC6.svg)</p>
 
 ## 量子傅立葉轉換
+- 量子傅立葉轉換的項次越多，可以理解成相位解析度越高
+- 量子傅立葉轉換可以用遞迴的方式不斷往上擴展
+<p align="center">![](./QC7.svg)</p>
 
+- 總共需要M平方等級的量子閘去組出QFTm
+- Swap Gate的數量甚至可以更少
+- 對於QFT2次方，用更少的 Cost/depth 可以逼近
+<p align="center">![](./QC8.svg)</p>
 
 ## 相位估計一般程序
+- 用多個U與多個Control bit來達成目標，看起來Cost有點高，不過這就是最一般的描述方式
+<p align="center">![](./QC9.svg)</p>
 
+- 量測結果可以寫成以下公式:
+<p align="center">![](./QC10.svg)</p>
+
+- 相位估計準度可以達到約40%
+<p align="center">![](./QC11.svg)</p>
+
+- 估計準度要超過40%，可以藉由多次量測
+<p align="center">![](./QC12.svg)</p>
 
 # 用相位估計解因數分解:
+- 藉由以下三部分的講解，一步一步了解要如何用量子計算來解質因數分解
 
+## Order Finding
+<p align="center">![](./QC13.svg)</p>
+<p align="center">![](./QC14.svg)</p>
 
 ## 用相位估計解 Order Finding
-
+<p align="center">![](./QC15.svg)</p>
+<p align="center">![](./QC16.svg)</p>
 
 ## 用Order Finding 解因數分解
-
+<p align="center">![](./QC17.svg)</p>
+<p align="center">![](./QC18.svg)</p>
+<p align="center">![](./QC19.svg)</p>
+<p align="center">![](./QC20.svg)</p>
 
 # 先驗知識:
 [台大線性代數課程](https://ocw.aca.ntu.edu.tw/ntu-ocw/ocw/cou/102S207)
@@ -59,6 +96,6 @@ isDraft: false
 
   url          = {https://infinite-wisdom.vercel.app/blog/post-240808},  
 
-  timestamp    = {Tue, 08 Aug 2024 09:15:00 +0800},
+  timestamp    = {Fri, 08 Aug 2024 09:15:00 +0800},
 }
 ```
