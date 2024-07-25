@@ -14,9 +14,73 @@ isDraft: false
 # 導言:
 量子計算是最終的計算形式，熟悉量子計算的各種概念與演算法，在未來，可用來模擬宇宙的運行，生命的繁衍，全社會的複雜系統運作，也能做出更為自然與高效率的人工智慧。在量子計算準備大行其道的八年前 (西元2024年)，我將帶著大家，按部就班地掌握量子計算，正如同10年前提早準備人工智慧一樣，善用原子習慣 + 超前學習，通往成功就是輕鬆且愉快的事情。
 
-<p align="center"><iframe width="100%" height="315" src="https://www.youtube.com/embed/2wticzHE1vs?si=BFn590EKM4_rlSg8" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
+<p align="center"><iframe width="100%" height="315" src="https://www.youtube.com/embed/CeK9ry8G8HQ?si=5aBhbO5PQ799yRku" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
 
-# To be continued...
+# Basics
+- Density matrices 相較於Quantum state vector，可以更廣泛表達各種量子狀態
+- Density matrices 可以描述一個量子系統的孤立部分，例如討論當一個系統的某些State和我們想忽略的其他系統發生糾纏的狀態
+- 機率狀態可以用 Density matrices 來表達，使得量子訊息和傳統訊息可以在同一個數學框架內被討論
+
+## Definitions and examples
+- Trace = 1，密度矩陣為半正定，所有的特徵值都是非負實數，這並不代表密度矩陣裡面每個Entry都大於0，也不代表密度矩陣裡面每個Entry都是實數，千萬不要誤會。
+- 密度矩陣裡面的Entry可以為負，可以有複數
+<p align="center">![](./QC1.svg)</p>
+<p align="center">![](./QC2.svg)</p>
+<p align="center">![](./QC3.svg)</p>
+
+- $$ M^{\dagger} M $$，隨便找一個複數矩陣M，都可以藉由這個簡單計算產生Density Matrices，只是記得要讓Trace為1，需要做正歸化
+<p align="center">![](./QC4.svg)</p>
+
+- 密度矩陣的Trace代表著狀態出現的機率，除了Trace以外的部分(行與列)表達傳統狀態以怎樣的量子方式疊加，形成量子疊加態
+
+## Connection to quantum state vectors
+- $$ \ket{\psi}\bra{\psi} $$ 就是Density Matrix要描述的對象，還記得複數矩陣做矩陣/向量轉置的時候，需要額外做Conjugate，這不就是上述提到的 $$ M^{\dagger} M $$ ，然後由於量子狀態都是單位長度，連正規化也不用做了。
+- 被Density Matrices描述的狀態都被稱為 Pure states
+<p align="center">![](./QC5.svg)</p>
+<p align="center">![](./QC6.svg)</p>
+<p align="center">![](./QC7.svg)</p>
+<p align="center">![](./QC8.svg)</p>
+
+- Global Phase在量子訊息裡面沒有意義，可以發現在計算Density Matrices的時候，Global phase會很自然地被消去(由於量子狀態矩陣/向量轉置要取Conjugate)
+<p align="center">![](./QC9.svg)</p>
+
+# Convex combinations
+<p align="center">![](./QC10.svg)</p>
+<p align="center">![](./QC11.svg)</p>
+<p align="center">![](./QC12.svg)</p>
+
+## The completely mixed state
+- 機率完全均分，完全混合，指的是每一個狀態出現機率相等
+- 以下的例子顯示了，不同的Pure states組合，有可能會有相同的Density Matrix，這表示無法藉由量測，分辨這兩種狀態原本的狀態，但凡Density Matrix有差別，理論上，都能夠有機會藉由量測分辨出來
+<p align="center">![](./QC13.svg)</p>
+
+## Probabilistic states
+<p align="center">![](./QC14.svg)</p>
+
+## Spectral theorem
+<p align="center">![](./QC15.svg)</p>
+<p align="center">![](./QC16.svg)</p>
+
+# Bloch sphere
+- 用Density matrices的觀察角度來重新看待Bloch sphere
+<p align="center">![](./QC17.svg)</p>
+<p align="center">![](./QC18.svg)</p>
+<p align="center">![](./QC19.svg)</p>
+
+- 用Density matrices的角度來看，球體X軸可以用 $$ \sigma_x $$ 來代表，球體Y軸可以用 $$ \sigma_y $$ 來代表，球體Z軸可以用 $$ \sigma_z $$ 來代表
+<p align="center">![](./QC20.svg)</p>
+<p align="center">![](./QC21.svg)</p>
+<p align="center">![](./QC22.svg)</p>
+
+- 在球內的都不是Pure State，只有在球的表面，才能算是Pure State，1/2 可以由不同的Pure state來組成，Bloch sphere 有助於我們更加理解量子訊息的本質，1/2也被稱為完全混合態，在Bloch球體的正中心
+<p align="center">![](./QC23.svg)</p>
+
+- 同理，0 State 和 + State 的結合也可以從Bloch球體上看清楚，他的概念是甚麼
+<p align="center">![](./QC24.svg)</p>
+
+# Multiple systems
+## Product states, correlated states, and entanglement
+## reduced states and the partial trace
 
 # 先驗知識:
 [台大線性代數課程](https://ocw.aca.ntu.edu.tw/ntu-ocw/ocw/cou/102S207)
