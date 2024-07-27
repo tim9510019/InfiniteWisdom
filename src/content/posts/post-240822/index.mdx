@@ -35,7 +35,7 @@ isDraft: false
 
 ## Connection to quantum state vectors
 - $$ \ket{\psi}\bra{\psi} $$ 就是Density Matrix要描述的對象，還記得複數矩陣做矩陣/向量轉置的時候，需要額外做Conjugate，這不就是上述提到的 $$ M^{\dagger} M $$ ，然後由於量子狀態都是單位長度，連正規化也不用做了。
-- 被Density Matrices描述的狀態都被稱為 Pure states
+- Pure states 表示所有在 Bloch 球面上的狀態，只要不是在球面上，必然是Mixed states，如果在球心，則是Complete mixed state
 <p align="center">![](./QC5.svg)</p>
 <p align="center">![](./QC6.svg)</p>
 <p align="center">![](./QC7.svg)</p>
@@ -45,16 +45,19 @@ isDraft: false
 <p align="center">![](./QC9.svg)</p>
 
 # Convex combinations
+- 代表某個Quantum state 的 Density matrix，可以用狀態出現的機率當成線性組合的係數，這種可分離狀態的組合，稱為凸組合，顯示了每一個狀態出現的機率
+- 如果針對Pure State做凸組合，必定會得到Mixed State，Pure state在Bloch球表面，Mixed State則是在球裡面
 <p align="center">![](./QC10.svg)</p>
 <p align="center">![](./QC11.svg)</p>
 <p align="center">![](./QC12.svg)</p>
 
 ## The completely mixed state
 - 機率完全均分，完全混合，指的是每一個狀態出現機率相等
-- 以下的例子顯示了，不同的Pure states組合，有可能會有相同的Density Matrix，這表示無法藉由量測，分辨這兩種狀態原本的狀態，但凡Density Matrix有差別，理論上，都能夠有機會藉由量測分辨出來
+- 以下的例子顯示了，不同的 Pure states 組合，有可能會有相同的 Density Matrix，這表示無法藉由量測，分辨這兩種狀態原本的狀態，但凡 Density Matrix有差別，理論上，都能夠有機會藉由量測分辨出來
 <p align="center">![](./QC13.svg)</p>
 
 ## Probabilistic states
+- 如果這些狀態都是傳統狀態，而非量子狀態，則可以得到除了Trace有機率值，其餘部分皆為 0 的 Density matrices
 <p align="center">![](./QC14.svg)</p>
 
 ## Spectral theorem
