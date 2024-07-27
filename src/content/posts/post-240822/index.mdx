@@ -61,11 +61,14 @@ isDraft: false
 <p align="center">![](./QC14.svg)</p>
 
 ## Spectral theorem
+- Density Matrix滿足半正定，必存在一組特徵向量使得特徵值必為非負實數，然後在量子計算領域，特徵值的總合為1，代表機率總和100%
 <p align="center">![](./QC15.svg)</p>
 <p align="center">![](./QC16.svg)</p>
 
 # Bloch sphere
 - 用Density matrices的觀察角度來重新看待Bloch sphere
+- 量子狀態的Density matrix可以分拆成Pauli gates(matrices)的非負實數(半正定)線性組合，可以看成是一種簡單表達Bloch Sphere的方式，$$ \sigma_x $$ 代表X軸上的長度，$$ \sigma_y $$ 代表Y軸上的長度，$$ \sigma_z $$ 代表Z
+軸上的長度
 <p align="center">![](./QC17.svg)</p>
 <p align="center">![](./QC18.svg)</p>
 <p align="center">![](./QC19.svg)</p>
@@ -75,7 +78,7 @@ isDraft: false
 <p align="center">![](./QC21.svg)</p>
 <p align="center">![](./QC22.svg)</p>
 
-- 在球內的都不是Pure State，只有在球的表面，才能算是Pure State，1/2 可以由不同的Pure state來組成，Bloch sphere 有助於我們更加理解量子訊息的本質，1/2也被稱為完全混合態，在Bloch球體的正中心
+- 在球內的都不是Pure State，只有在球的表面，才能算是Pure State，1/2 可以由不同的Pure state來組成，Bloch sphere 有助於我們更加理解量子訊息的本質，1/2也被稱為完全混合態，在Bloch球體的正中心，完全混合態能生萬物，接近於道
 <p align="center">![](./QC23.svg)</p>
 
 - 同理，0 State 和 + State 的結合也可以從Bloch球體上看清楚，他的概念是甚麼
@@ -100,7 +103,9 @@ isDraft: false
 - 多個Desity matrices 線性(隨機)組合，我們稱為seperable state，這也是一種Corrlated state，如果無法用可分拆的形式來描述，代表有Entanglement，給定任一個複雜Desity matrices，要確認是否有Entanglement，不是一件容易的事情
 <p align="center">![](./QC29.svg)</p>
 
-## reduced states and the partial trace
+## Reduced states and the partial trace
+- 簡單來說就是把要消滅的quantum state B，以想留著的quantum state A當基底，累加計算所有的機率，直到只剩下quantum state A 與 quantum state B 量子攤縮後的機率為止
+- 別被Density matrix的表達公式嚇到，可以用之前學到的部分攤縮的公式，逐步推導而成
 <p align="center">![](./QC30.svg)</p>
 <p align="center">![](./QC31.svg)</p>
 <p align="center">![](./QC32.svg)</p>
