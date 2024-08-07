@@ -16,7 +16,64 @@ isDraft: false
 
 <p align="center"><iframe width="100%" height="315" src="https://www.youtube.com/embed/cMl-xIDSmXI?si=w6suMJfFVuTZx_L-" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe></p>
 
-# To be continued...
+# Channel定義
+- 用來描述量子訊息系統，離散時間的變化，可以用來探討，包含 Unitary operation 引發的變化，或是想要避免的因素，如Noise，對系統的產生的變化
+- 用 $$ \Phi(\rho) $$ 來表達一個Channel $$ \Phi $$ 作用在一個density matrix state $$ \rho $$
+- Channels 皆為線性，轉換 desity matrix 到另一個 desity matrix
+- Channels 可以局部作用在一個Compound system
+- $$ \Phi $$ 轉換 input system X 成為 output system Y
+- Z 是一個量子訊息系統，$$ \Gamma $$ 是 Z 的 Classical State 集合，(Z, X)為一個量子狀態，可以用Density matrix $$ \rho $$ 加以表達
+$$
+\rho = \sum_{a,b \in \Gamma}{\ket{a}\bra{b} \otimes \rho_{a,b}}
+$$
+- 施加 Channel $$ \Phi $$ 於 X，可以得 Y，可以得到 (Z, Y)
+$$
+\sum_{a,b \in \Gamma}{\ket{a}\bra{b} \otimes \Phi{(\rho_{a,b})}}
+$$
+- Density matrix X 經由 $$ \Phi $$ 轉換成 Density matrix Y，可以寫成一般式:
+<p align="center">![](./QC1.svg)</p>
+
+## Unitary Channels
+- Unitary Channel 可以寫成以下等式，用U來代表Unitary matrix
+$$
+\Phi{(\rho)} = U \rho U^{\dagger}
+$$
+- 其實不難推導，假設 $$ \ket{\psi}\bra{\psi} $$ 是一個Density matrix用來表示 quantum state vector $$ \psi $$，現在有一個Unitary matrix U 作用在 $$ \ket{psi} $$ 上面，則Density matrix可以寫成以下形式:
+$$
+(U\ket{\psi})(U\ket{\psi})^{\dagger} = U\ket{\psi}\bra{\psi}U^{\dagger}
+$$
+- 量子 Channel 必然是一個 Unitary channel，channel 作用在 Density matrix上，仍然維持半正定的特性，必然存在一個 Unitary matrix 得以表達 $$ \Phi $$ 作用在X上，(Z, X) 可由 Density matrix $$ \rho $$ 來進行表達
+$$
+(\mathbb{1}_Z \otimes U)\rho(\mathbb{1}_Z \otimes U)^{\dagger}
+$$
+- 如果Channel為Identity，等同把 $$ \mathbb{1} $$ 代入上式 U，可以寫成:
+$$
+Id{(\rho)} = \rho
+$$
+
+## Convex combinations
+- $$ \Phi_{0} $$ $$ \Phi_{1} $$ 都是 X->Y 的 Channels，且機率 $$ p \in \left[ 0,1 \right] $$，這種線性組合稱為Convex combination，可以寫成以下:
+$$
+\Psi = p\Phi_{0} + (1-p)\Phi_{1}
+$$
+- 這個新的Channel仍然維持半正定的特性，Trace維持為1
+- 可以寫成如下更為General Convex Combination 的公式，假設 $$ \Phi_{0}...\Phi_{m-1} $$ 是Channels，然後 $$ p_{0}...p_{m-1} $$ 代表一組相對應的機率向量:
+$$
+\Psi = \sum_{k=0}^{m-1}{p_{k}\Phi_{k}}
+$$
+- 當然這個Channel Convex組合可以作用在Density matrix 上，組成一個Mixed Unitary Channel，如下所示:
+$$
+\Psi{(\rho)} = \sum_{k=0}^{m-1}{U_{k}p_{k}U_{k}^{\dagger}}
+$$
+
+# Channel表達方式
+- 首先定義一些重要的 Channel，如 Qubit Reset，Complete dephasing & Complete depolarizing，然後使用 Stinespring representations 對三個Channel 進行描述，並證明之
+- 隨後定義Kraus representation 與 Choi representation，最後驗證三種表達方式實則三位一體，可以互通
+- To be continued ...
+
+# Channel表達等效
+- To be continued ...
+
 
 # 先驗知識:
 [台大線性代數課程](https://ocw.aca.ntu.edu.tw/ntu-ocw/ocw/cou/102S207)
