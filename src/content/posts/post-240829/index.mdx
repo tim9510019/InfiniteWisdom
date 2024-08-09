@@ -28,7 +28,7 @@ $$
 $$
 - 施加 Channel $$ \Phi $$ 於 X，可以得 Y，可以得到 (Z, Y)
 $$
-\sum_{a,b \in \Gamma}{\ket{a}\bra{b} \otimes \Phi{(\rho_{a,b})}}
+\Psi{(\rho)} = \sum_{a,b \in \Gamma}{\ket{a}\bra{b} \otimes \Phi{(\rho_{a,b})}}
 $$
 - Density matrix X 經由 $$ \Phi $$ 轉換成 Density matrix Y，可以寫成一般式:
 <p align="center">![](./QC1.svg)</p>
@@ -38,7 +38,7 @@ $$
 $$
 \Phi{(\rho)} = U \rho U^{\dagger}
 $$
-- 其實不難推導，假設 $$ \ket{\psi}\bra{\psi} $$ 是一個Density matrix用來表示 quantum state vector $$ \psi $$，現在有一個Unitary matrix U 作用在 $$ \ket{psi} $$ 上面，則Density matrix可以寫成以下形式:
+- 其實不難推導，假設 $$ \ket{\psi}\bra{\psi} $$ 是一個Density matrix用來表示 quantum state vector $$ \psi $$，現在有一個Unitary matrix U 作用在 $$ \ket{\psi} $$ 上面，則Density matrix可以寫成以下形式:
 $$
 (U\ket{\psi})(U\ket{\psi})^{\dagger} = U\ket{\psi}\bra{\psi}U^{\dagger}
 $$
@@ -51,8 +51,8 @@ $$
 Id{(\rho)} = \rho
 $$
 
-## Convex combinations
-- $$ \Phi_{0} $$ $$ \Phi_{1} $$ 都是 X->Y 的 Channels，且機率 $$ p \in \left[ 0,1 \right] $$，這種線性組合稱為Convex combination，可以寫成以下:
+## Convex Combinations
+- $$ \Phi_{0} $$ $$ \Phi_{1} $$ 都是 X -> Y 的 Channels，且機率 $$ p \in \left[ 0,1 \right] $$，這種線性組合稱為Convex combination，可以寫成以下:
 $$
 \Psi = p\Phi_{0} + (1-p)\Phi_{1}
 $$
@@ -69,7 +69,17 @@ $$
 # Channel表達方式
 - 首先定義一些重要的 Channel，如 Qubit Reset，Complete dephasing & Complete depolarizing，然後使用 Stinespring representations 對三個Channel 進行描述，並證明之
 - 隨後定義Kraus representation 與 Choi representation，最後驗證三種表達方式實則三位一體，可以互通
-- To be continued ...
+
+## Qubit Reset Channel
+- 其實就是把Single qubit reset 成 $$ \ket{0} $$，用Density matrix的寫法
+$$
+\Lambda(\rho) = Tr(\rho) \ket{0}\bra{0}
+$$
+- 只有對角線的會留下來，Trace必定為1 (機率總和=1)，進一步整理，可以得到1/2的部分，也就是Complete mixed state
+<p align="center">![](./QC2.svg)</p>
+
+## Complete Dephasing
+
 
 # Channel表達等效
 - To be continued ...
