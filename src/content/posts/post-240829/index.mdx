@@ -52,7 +52,7 @@ Id{(\rho)} = \rho
 $$
 
 ## Convex Combinations
-- $$ \Phi_{0} $$ $$ \Phi_{1} $$ 都是 X -> Y 的 Channels，且機率 $$ p \in \left[ 0,1 \right] $$，這種線性組合稱為Convex combination，可以寫成以下:
+- $$ \Phi_{0} $$ $$ \Phi_{1} $$ 都是 X -> Y 的 Channels，且機率 $$ p \in \left[ 0,1 \right] $$，這種線性組合稱為Convex Combination，可以寫成以下:
 $$
 \Psi = p\Phi_{0} + (1-p)\Phi_{1}
 $$
@@ -75,11 +75,109 @@ $$
 $$
 \Lambda(\rho) = Tr(\rho) \ket{0}\bra{0}
 $$
-- 只有對角線的會留下來，Trace必定為1 (機率總和=1)，進一步整理，可以得到1/2的部分，也就是Complete mixed state
-<p align="center">![](./QC2.svg)</p>
+- 假設 A & B 為 qubits，(A, B) 為 $$ \ket{\phi^{+}} $$，Qubit Reset Channel $$ \Lambda $$ 被施加在A上面，首先我們必須將 $$ \ket{\phi^{+}} $$ 寫成 Density matrix 表達
+$$
+\ket{\phi^{+}} = \frac{1}{\sqrt{2}} \ket{0} \otimes \ket{0} + \frac{1}{\sqrt{2}} \ket{1} \otimes \ket{1}
+$$
+$$
+\bra{\phi^{+}} = \frac{1}{\sqrt{2}} \bra{0} \otimes \bra{0} + \frac{1}{\sqrt{2}} \bra{1} \otimes \bra{1}
+$$
+$$
+\ket{\phi^{+}}\bra{\phi^{+}} = 
+$$
+$$
+\frac{1}{2} \ket{0}\bra{0} \otimes \ket{0}\bra{0} + 
+$$
+$$
+\frac{1}{2} \ket{0}\bra{1} \otimes \ket{0}\bra{1} +
+$$
+$$
+\frac{1}{2} \ket{1}\bra{0} \otimes \ket{1}\bra{0} +
+$$
+$$
+\frac{1}{2} \ket{1}\bra{1} \otimes \ket{1}\bra{1}
+$$
 
-## Complete Dephasing
+- 只有對角線的會留下來，Trace必定為1 (機率總和=1)，進一步整理，可以得到 $$ \ket{0}\bra{0} \otimes \frac{\mathbb{1}}{2} $$，由於Qubit A 被 Reset成 0 了，Qubit B 就可以經過整理變成，Complete mixed state $$ \frac{\mathbb{1}}{2} $$
+$$
+\frac{1}{2} \Lambda{(\ket{0}\bra{0})} \otimes \ket{0}\bra{0} + 
+$$
+$$
+\frac{1}{2} \Lambda{(\ket{0}\bra{1})} \otimes \ket{0}\bra{1} + 
+$$
+$$
+\frac{1}{2} \Lambda{(\ket{1}\bra{0})} \otimes \ket{1}\bra{0} + 
+$$
+$$
+\frac{1}{2} \Lambda{(\ket{1}\bra{1})} \otimes \ket{1}\bra{1} = 
+$$
+$$
+\frac{1}{2} \ket{0}\bra{0} \otimes \ket{0}\bra{0} + \frac{1}{2} \ket{0}\bra{0} \otimes \ket{1}\bra{1} = 
+$$
+$$
+\ket{0}\bra{0} \otimes \frac{\mathbb{1}}{2}
+$$
 
+## Complete Dephasing Channel
+- 完全去除相位的Channel，其實就是只留下Trace(對角線)的部分，其餘都會變成0
+$$
+  \Delta
+  \begin{pmatrix}
+  \alpha_{00} & \alpha_{01} \\
+  \alpha_{10} & \alpha_{11}
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+  \alpha_{00} & 0 \\
+  0 & \alpha_{11}
+  \end{pmatrix}
+$$
+$$
+\Delta{(\ket{0}\bra{0})} = \ket{0}\bra{0}
+$$
+$$
+\Delta{(\ket{0}\bra{1})} = 0
+$$
+$$
+\Delta{(\ket{1}\bra{0})} = 0
+$$
+$$
+\Delta{(\ket{1}\bra{1})} = \ket{1}\bra{1}
+$$
+
+- 假設 A & B 為 qubits，(A, B) 為 $$ \ket{\phi^{+}} $$，將 $$ \Delta $$ Channel 施加在 A 上
+$$
+\frac{1}{2} \Delta{(\ket{0}\bra{0})} \otimes \ket{0}\bra{0} + 
+$$
+$$
+\frac{1}{2} \Delta{(\ket{0}\bra{1})} \otimes \ket{0}\bra{1} + 
+$$
+$$
+\frac{1}{2} \Delta{(\ket{1}\bra{0})} \otimes \ket{1}\bra{0} + 
+$$
+$$
+\frac{1}{2} \Delta{(\ket{1}\bra{1})} \otimes \ket{1}\bra{1} = 
+$$
+$$
+\frac{1}{2} \ket{0}\bra{0} \otimes \ket{0}\bra{0} + \frac{1}{2} \ket{1}\bra{1} \otimes \ket{1}\bra{1}
+$$
+- 如果不要完全去除相位，要保留一些輸入的相位，可以看成是 $$ \Delta $$ 和 Id 的 Convex Combination
+$$
+\Delta_{\epsilon} = (1 - \epsilon)Id + \epsilon \Delta
+$$
+
+## Complete Depolarizing Channel
+- 完全去除極性的Channel，代表的就是完全隨機的雜訊，也是宇宙本源所在
+$$
+\Omega{(\rho)} = Tr(\rho) \frac{\mathbb{1}}{2}
+$$
+- 如果不要完全去除極性，要保留一些輸入的訊息，可以看成是 $$ \Omega $$ 和 Id 的 Convex Combination
+$$
+\Omega_{\epsilon} = (1 - \epsilon)Id + \epsilon \Omega
+$$
+$$
+\Omega_{\epsilon}{(\rho)} = (1 - \epsilon)\rho + \frac{\epsilon}{2} \mathbb{1}
+$$
 
 # Channel表達等效
 - To be continued ...
