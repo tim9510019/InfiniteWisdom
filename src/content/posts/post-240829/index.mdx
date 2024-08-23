@@ -165,6 +165,18 @@ $$
 $$
 \Delta_{\epsilon} = (1 - \epsilon)Id + \epsilon \Delta
 $$
+$$
+  \Delta_{\epsilon}
+  \begin{pmatrix}
+  \alpha_{00} & \alpha_{01} \\
+  \alpha_{10} & \alpha_{11}
+  \end{pmatrix}
+  =
+  \begin{pmatrix}
+  \alpha_{00} & (1-\epsilon) \alpha_{01} \\
+  (1-\epsilon) \alpha_{10} & \alpha_{11}
+  \end{pmatrix}
+$$
 
 ## Complete Depolarizing Channel
 - 完全去除極性的Channel，代表的就是完全隨機的雜訊，也是宇宙本源所在
@@ -180,8 +192,28 @@ $$
 $$
 
 # Channel表達等效
-- To be continued ...
+- 不是所有的Channel都可以如上述三個例子一樣，用簡單的公式表達，Channel的一般性表達有三種型式，Stinespring / Kraus / Choi Representation
 
+## Stinespring Representation
+- 這種表達方式並非唯一，本質上就是藉由捨棄部分Qubit的結果(Partial Trace @ density matrix)，來達成目的
+<p align="center">![](./QC1.svg)</p>
+
+## Kraus Representation
+- 這種表達方式並非唯一，藉由一組Trace總和為Id的Channel Matrix來表達
+<p align="center">![](./QC2.svg)</p>
+<p align="center">![](./QC3.svg)</p>
+<p align="center">![](./QC4.svg)</p>
+
+## Choi Representation
+<p align="center">![](./QC5.svg)</p>
+<p align="center">![](./QC6.svg)</p>
+<p align="center">![](./QC7.svg)</p>
+<p align="center">![](./QC8.svg)</p>
+<p align="center">![](./QC9.svg)</p>
+
+## 三位一體
+<p align="center">![](./QC10.svg)</p>
+<p align="center">![](./QC11.svg)</p>
 
 # 先驗知識:
 [台大線性代數課程](https://ocw.aca.ntu.edu.tw/ntu-ocw/ocw/cou/102S207)
