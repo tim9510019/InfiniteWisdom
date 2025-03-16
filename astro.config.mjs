@@ -19,7 +19,7 @@ import remarkMath from "remark-math"; // relevant
 // astro db
 // import db from "@astrojs/db";
 
-import vercel from "@astrojs/vercel/serverless";
+import vercel from "@astrojs/vercel";
 
 export default defineConfig({
   prefetch: {
@@ -74,6 +74,6 @@ export default defineConfig({
       ],
     },
   },
-  output: "hybrid",
+  output: "static",
   adapter: vercel(),
 });
